@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/mi_add"
+          android:title="@string/add_story"
+            android:icon="@drawable/add" android:showAsAction="ifRoom">
+    </item>
+    <item android:id="@+id/mi_tips"
+          android:title="@string/tips_tricks"
+          android:icon="@drawable/tips" android:showAsAction="ifRoom">
+    </item>
+
+</menu>

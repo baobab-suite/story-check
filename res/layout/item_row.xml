@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:background="@color/bg"
+              android:layout_height="64dp">
+
+    <com.baobab.android.storycheck.view.TriStateButton
+            android:id="@+id/bt_state"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/item_state"
+            android:layout_margin="4dp"
+            />
+
+    <TextView
+            android:id="@+id/tv_label"
+            android:layout_toRightOf="@id/bt_state"
+            android:layout_height="44dp"
+            android:gravity="top"
+            android:text="This is the headline that is very long"
+            android:textSize="17sp"
+            android:maxLines="2"
+            android:lines="2"
+            android:lineSpacingMultiplier="0.9"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginRight="8dp"
+            android:layout_width="fill_parent"
+            />
+
+    <TextView
+            android:id="@+id/tv_note"
+            android:layout_below="@id/tv_label"
+            android:layout_toRightOf="@id/bt_state"
+            android:text="notes go here "
+            android:layout_height="20dp"
+            android:gravity="top"
+            android:textSize="13sp"
+            android:lines="1"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="8dp"
+            android:layout_width="fill_parent"
+            />
+
+
+</RelativeLayout>

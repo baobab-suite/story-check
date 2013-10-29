@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:background="@color/bg"
+              android:layout_height="wrap_content">
+
+    <ImageView
+            android:id="@+id/iv_state"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="8dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/fakepie"
+            />
+
+    <TextView
+            android:id="@+id/tv_label"
+            android:layout_toRightOf="@id/iv_state"
+            android:layout_height="40dp"
+            android:gravity="top"
+            android:text="This is the headline that is very long as you get to see"
+            android:textSize="17sp"
+            android:maxLines="2"
+            android:lines="2"
+            android:lineSpacingMultiplier="0.8"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_width="fill_parent"
+            />
+
+    <TextView
+            android:id="@+id/tv_date"
+            android:layout_below="@id/tv_label"
+            android:layout_toRightOf="@id/iv_state"
+            android:text="12.04.2013"
+            android:layout_height="24dp"
+            android:gravity="top"
+            android:textSize="13sp"
+            android:lines="1"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="8dp"
+            android:layout_width="wrap_content"
+            />
+
+    <TextView
+            android:id="@+id/tv_slash"
+            android:layout_below="@id/tv_label"
+            android:layout_toRightOf="@id/tv_date"
+            android:text="/"
+            android:layout_height="24dp"
+            android:gravity="top"
+            android:textSize="13sp"
+            android:lines="1"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="8dp"
+            android:layout_width="wrap_content"
+            />
+
+    <TextView
+            android:id="@+id/tv_type"
+            android:layout_below="@id/tv_label"
+            android:layout_toRightOf="@id/tv_slash"
+            android:text="This is the story type"
+            android:layout_height="24dp"
+            android:gravity="top"
+            android:textSize="13sp"
+            android:lines="1"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="8dp"
+            android:layout_width="fill_parent"
+            />
+
+
+</RelativeLayout>

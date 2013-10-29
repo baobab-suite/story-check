@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res/com.baobab.android.storycheck">
+    <item android:drawable="@drawable/item_state_true" app:state_item_done="true" app:state_item_na="false"/>
+    <item android:drawable="@drawable/item_state_na" app:state_item_na="true" app:state_item_done="false"/>
+    <item android:drawable="@drawable/item_state_false" app:state_item_done="false" app:state_item_na="false"/>
+</selector>

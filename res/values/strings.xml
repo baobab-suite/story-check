@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">StoryCheck</string>
+    <string name="error_loading_storytypes">Problem loading story types</string>
+    <string name="error_loading_story">Could not load the story</string>
+    <string name="delete_story">Delete story</string>
+    <string name="share_story">Share story</string>
+    <string name="tips_tricks">Tips and Tricks</string>
+    <string name="add_story">Create Story</string>
+    <string name="delete">Delete</string>
+    <string name="share">share</string>
+    <string name="tips">Tips</string>
+</resources>

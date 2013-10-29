@@ -1,0 +1,19 @@
+[
+    {"key":"accident", "name":"Accidents"},
+    {"key":"biography", "name":"Biography"},
+    {"key":"audget-adoption", "name":"Budget Adoption"},
+    {"key":"civil-action", "name":"Courts - Civil Action"},
+    {"key":"verdict-stories", "name":"Courts - Verdict Stories"},
+    {"key":"crime", "name":"Crime"},
+    {"key":"disasters", "name":"Disasters"},
+    {"key":"features", "name":"Features"},
+    {"key":"fires", "name":"Fires"},
+    {"key":"interviews", "name":"Interviews"},
+    {"key":"colin-howell", "name":"Interviews -- Colin Howell style"},
+    {"key":"meetings", "name":"Meetings"},
+    {"key":"news-conferences", "name":"News Conferences"},
+    {"key":"obituaries", "name":"Obituaries"},
+    {"key":"profile", "name":"Profile"},
+    {"key":"speeches", "name":"Speeches"},
+    {"key":"sports-game", "name":"Sports - Game Coverage"}
+]

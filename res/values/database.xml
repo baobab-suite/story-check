@@ -1,0 +1,15 @@
+<resources>
+    <string-array name="scripts_v2">
+
+        <!--TABLE - title -->
+        <item>CREATE TABLE IF NOT EXISTS Story (_id INTEGER PRIMARY KEY, headline TEXT, create_date INTEGER, type TEXT)
+        </item>
+
+        <!--TABLE - edition -->
+        <item>CREATE TABLE IF NOT EXISTS StoryItem (_id INTEGER PRIMARY KEY, story_id INTEGER NOT NULL, label TEXT NOT NULL,
+            note TEXT)
+        </item>
+
+    </string-array>
+
+</resources>
