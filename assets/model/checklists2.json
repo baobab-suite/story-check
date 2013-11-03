@@ -1,6 +1,7 @@
 [
     {"name":"Accidents",
-"items":[    {"label":"Identification of dead, injured"},
+"items":[
+    {"label":"Identification of dead, injured"},
     {"label":"Time and location"},
     {"label":"Type(s) of vehicle(s) involved"},
     {"label":"Cause of accident (from official sources)"},
@@ -16,7 +17,8 @@
     {"label":"Unusual weather or road conditions"},
     {"label":"Accounts by eyewitnesses, investigating officers"}]},
     {"name":"Biography",
-"items":[    {"label":"Name"},
+"items":[
+    {"label":"Name"},
     {"label":"Date of birth"},
     {"label":"Place of birth"},
     {"label":"Date of death"},

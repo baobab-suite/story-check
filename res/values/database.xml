@@ -1,14 +1,286 @@
 <resources>
-    <string-array name="scripts_v2">
+    <string-array name="create_db">
 
-        <!--TABLE - title -->
-        <item>CREATE TABLE IF NOT EXISTS Story (_id INTEGER PRIMARY KEY, headline TEXT, create_date INTEGER, type TEXT)
+        <item>
+            CREATE TABLE IF NOT EXISTS StoryType (_id INTEGER PRIMARY KEY, name TEXT, seq INTEGER NOT NULL)
+        </item>
+        <item>
+            CREATE TABLE IF NOT EXISTS StoryItemType (_id INTEGER PRIMARY KEY, story_type_id INTEGER NOT NULL, label TEXT NOT NULL, seq INTEGER NOT NULL)
+        </item>
+        <item>
+            CREATE TABLE IF NOT EXISTS Story (_id INTEGER PRIMARY KEY, headline TEXT, create_date INTEGER, type TEXT)
+        </item>
+        <item>
+            CREATE TABLE IF NOT EXISTS StoryItem (_id INTEGER PRIMARY KEY, story_id INTEGER NOT NULL, state INTEGER NOT NULL,
+            label TEXT NOT NULL, note TEXT)
         </item>
 
-        <!--TABLE - edition -->
-        <item>CREATE TABLE IF NOT EXISTS StoryItem (_id INTEGER PRIMARY KEY, story_id INTEGER NOT NULL, label TEXT NOT NULL,
-            note TEXT)
-        </item>
+    </string-array>
+    <string-array name="insert_init_data">
+
+        <item> insert into StoryType (_id, name, seq) values (0, \'Accidents\', 0)</item>
+        <item> insert into StoryType (_id, name, seq) values (1, \'Biography\', 1)</item>
+        <item> insert into StoryType (_id, name, seq) values (2, \'Budget Adoption\', 2)</item>
+        <item> insert into StoryType (_id, name, seq) values (3, \'Courts - iil Action\', 3)</item>
+        <item> insert into StoryType (_id, name, seq) values (4, \'Courts - Verdict Stories\', 4)</item>
+        <item> insert into StoryType (_id, name, seq) values (5, \'Crime\', 5)</item>
+        <item> insert into StoryType (_id, name, seq) values (6, \'Disasters\', 6)</item>
+        <item> insert into StoryType (_id, name, seq) values (7, \'Features\', 7)</item>
+        <item> insert into StoryType (_id, name, seq) values (8, \'Fires\', 8)</item>
+        <item> insert into StoryType (_id, name, seq) values (9, \'Interviews\', 9)</item>
+        <item> insert into StoryType (_id, name, seq) values (10, \'Interviews -- Colin Howell style\', 10)</item>
+        <item> insert into StoryType (_id, name, seq) values (11, \'Meetings\', 11)</item>
+        <item> insert into StoryType (_id, name, seq) values (12, \'News Conferences\', 12)</item>
+        <item> insert into StoryType (_id, name, seq) values (14, \'Obituaries\', 14)</item>
+        <item> insert into StoryType (_id, name, seq) values (15, \'Profile\', 15)</item>
+        <item> insert into StoryType (_id, name, seq) values (16, \'Speeches\', 16)</item>
+
+        <item> insert into StoryItemType (story_type_id, label, seq) values (0, \'Identification of dead, injured\', 0)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (0, \'Time and location\', 1)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (0, \'Type(s) of vehicle(s) involved\', 2)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (0, \'Cause of accident (from official sources)\', 3)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (0, \'Identification of others involved\', 4)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (0, \'Where dead and injured were taken\', 5)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (0, \'Extent of injuries\', 6)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (0, \'Condition of injured\', 7)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (0, \'Heroism, rescues\', 8)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (0, \'Arrest(s) or other legal action\', 9)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (0, \'Funeral arrangements if available\', 10)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (0, \'Damage to vehicles\', 11)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (0, \'Speed, origin, destination of vehicles\', 12)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (0, \'Unusual weather or road conditions\', 13)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (0, \'Accounts by eyewitnesses, investigating officers\', 14)</item>
+
+
+        <item> insert into StoryItemType (story_type_id, label, seq) values (1, \'Name\', 0)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (1, \'Date of birth\', 1)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (1, \'Place of birth\', 2)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (1, \'Date of death\', 3)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (1, \'Place of death\', 4)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (1, \'Physical description\', 5)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (1, \'Character / Personality\', 6)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (1, \'Education (include any degrees earned)\', 7)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (1, \'Personal relationships (family, friends, work colleagues)\', 8)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (1, \'Awards / Honours / Formal Recognition\', 9)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (1, \'List at least FIVE important dates from the person`s life and explain why these dates are significant\', 10)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (1, \'Summarize major contributions to society and the world\', 11)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (1, \'List at least THREE major political or social events which occurred during this person`s life. For each event, explain how you think it may have affected your biographical subject\', 12)</item>
+
+
+
+        <item> insert into StoryItemType (story_type_id, label, seq) values (2, \'Amount to be spent\', 0)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (2, \'New or increased taxes, higher licence and permit fees, and other income that will be necessary to meet expenditure\', 1)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (2, \'Cuts, if any, to be made in such taxes, fees, or fines\', 2)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (2, \'Comparison with preceding year(s)\', 3)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (2, \'Justification for increases sought, cuts made\', 4)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (2, \'Rate of current spending, whether under or over budget of previous year\', 5)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (2, \'Patterns behind the submission and subsequent adjustments, like political motives, pressure groups, historical factors\', 6)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (2, \'Consequences of budget for: agencies, departments, businesses, the public\', 7)</item>
+
+
+        <item> insert into StoryItemType (story_type_id, label, seq) values (3, \'Identification of person or organisation filing action\', 0)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (3, \'Background of plaintiff or petitioner\', 1)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (3, \'Defendent or respondent\', 2)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (3, \'Type of damage alleged\', 3)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (3, \'Remedy sought\', 4)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (3, \'Date of filing, court of jurisdiction\', 5)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (3, \'Special motivation behind action if any\', 6)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (3, \'History of the conflict, disagreement\', 7)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (3, \'Similar cases decided by courts (precedents)\', 8)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (3, \'Could suit lead to a landmark action? Is it a precedent?\', 9)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (3, \'Possibility of an out of court settlement\', 10)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (3, \'Significance of action, effect on others\', 11)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (3, \'Lawyers for both sides\', 12)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (3, \'Date and presiding judge for trial, hearing\', 13)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (3, \'Judge`s / magistrate`s reputation with similar cases\', 14)</item>
+
+
+        <item> insert into StoryItemType (story_type_id, label, seq) values (4, \'Verdict. Damages, if awarded. (Same, less, greater than those sought)\', 0)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (4, \'Parties involved\', 1)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (4, \'Judge`s statement, if any. Deviations by judge from assessors` findings.\', 2)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (4, \'Summary of allegations by plaintiff\', 3)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (4, \'Key testimony and attorney/advocate`s points\', 4)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (4, \'Length of deliberations\', 5)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (4, \'Comment by assessors on deliberations, verdict\', 6)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (4, \'Any appeals or motions\', 7)</item>
+
+
+        <item> insert into StoryItemType (story_type_id, label, seq) values (5, \'Identification of victim\', 0)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (5, \'Crime, how committed\', 1)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (5, \'Date, time, location of crime\', 2)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (5, \'Violent crime: official cause of death, injury; weapon used; motivation; background of victim if relevant\', 3)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (5, \'Property crime: value of loss; method of theft or entry\', 4)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (5, \'Arrests, suspects, clues\', 5)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (5, \'Unusual circumstances\', 6)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (5, \'Quotes of victim, witnesses, police\', 7)</item>
+
+
+        <item> insert into StoryItemType (story_type_id, label, seq) values (6, \'Dead\', 0)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (6, \'Injured\', 1)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (6, \'Total affected or in danger\', 2)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (6, \'Cause of death\', 3)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (6, \'Estimated death and injury toll\', 4)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (6, \'Eyewitness accounts\', 5)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (6, \'Property loss and damage: Homes,land, public utilities, permanent damage\', 6)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (6, \'Rescue and relief operations: Evacuations, heroism, unusual equipment used or unique rescue techniques, number of official personnel and volunteers\', 7)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (6, \'Warnings: Health department, public utility, police statements\', 8)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (6, \'Looting\', 9)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (6, \'Number of spectators\', 10)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (6, \'Insurance\', 11)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (6, \'Lawsuits\', 12)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (6, \'Arrests\', 13)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (6, \'Investigations\', 14)</item>
+
+
+        <item> insert into StoryItemType (story_type_id, label, seq) values (7, \'Show people in action\', 0)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (7, \'Quote people\', 1)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (7, \'Let the action and quotes carry the piece\', 2)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (7, \'Begin with a delayed intro\', 3)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (7, \'Get to the main theme within six paragraphs\', 4)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (7, \'Blend necessary background into movement of piece\', 5)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (7, \'End on a high note\', 6)</item>
+
+
+        <item> insert into StoryItemType (story_type_id, label, seq) values (8, \'Deaths, injuries\', 0)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (8, \'Identification of victims\', 1)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (8, \'Location, type of structure(s)\', 2)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (8, \'Cause (from official source)\', 3)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (8, \'When, where started, how spread\', 4)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (8, \'When brought under control\', 5)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (8, \'How victims killed, injured\', 6)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (8, \'Property loss: extent, cost of damage, insurance\', 7)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (8, \'Investigation, unusual circumstances\', 8)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (8, \'Where dead, injured taken; extent of injuries\', 9)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (8, \'Rescue attempts\', 10)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (8, \'Comments of neighbours, eyewitnesses\', 11)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (8, \'Number of fire engines, firefighters\', 12)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (8, \'Sources: Fire chief, police, hospital, mortuary, welfare agencies\', 13)</item>
+
+
+        <item> insert into StoryItemType (story_type_id, label, seq) values (9, \'Research background on person and subject\', 0)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (9, \'Establish relationship with subject quickly\', 1)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (9, \'Use general opening questions to get subject talking easily\', 2)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (9, \'Move to main subject soon after.\', 3)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (9, \'Ask specific questions like `how did you kill him` rather than `tell me about your life`\', 4)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (9, \'Be ready to move to another subject if the interview is dragging\', 5)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (9, \'Listen and watch attentively\', 6)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (9, \'Let `em talk. Don`t interrupt\', 7)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (9, \'Keep your questions short\', 8)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (9, \'If the answer is `no comment`, ask the question differently\', 9)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (9, \'Put the notebook away if it makes `em nervous\', 10)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (9, \'Never debate, never argue\', 11)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (9, \'Never make statements\', 12)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (9, \'Be cooperative\', 13)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (9, \'Note stress factors - frequent leg crossing, doodling,playing with papers\', 14)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (9, \'Don`t avoid tough embarrassing questions, but make sure they`re necessary, and time them right\', 15)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (9, \'Never accept a retroactive off-the-record requests\', 16)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (9, \'Do not tamper with quotes; paraphrase if necessary\', 17)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (9, \'Avoid requests for anonymity whenever possible\', 18)</item>
+
+
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'Name\', 0)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'Age\', 1)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'Marital status\', 2)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'Children\', 3)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'Professional position\', 4)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'Residing in (suburb)\', 5)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'What are your strengths?\', 6)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'What are your weaknesses?\', 7)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'What makes you tick?\', 8)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'What makes you smile?\', 9)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'What`s great about South Africa?\', 10)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'What`s not so great about South Africa?\', 11)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'Are you paid too much?\', 12)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'Pet hates?\', 13)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'You`re stuck on a desert island -- who and what would you take with you?\', 14)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'Favourite food?\', 15)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'Favourite music?\', 16)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'Favourite film?\', 17)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'Favourite writer?\', 18)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'Last book you read?\', 19)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'Favourite sport?\', 20)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'Who are your role models?\', 21)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'In general, rules are there to be ...\', 22)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'If you could do it all again, what would you change?\', 23)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'If you were president for a day, what would you do?\', 24)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'Who would you most like to be?\', 25)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'What do you do for fun?\', 26)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'Describe your ideal evening out\', 27)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'Do you like designer label goods?\', 28)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'What`s the best present you ever received?\', 29)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'The greatest surprise of your life?\', 30)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'Your greatest triumph?\', 31)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'Your greatest failure?\', 32)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'How would you like to be remembered?\', 33)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'Your favourite media?\', 34)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (10, \'When last were you naughty?\', 35)</item>
+
+        <!--Meetings-->
+        <item> insert into StoryItemType (story_type_id, label, seq) values (11, \'Major action(s): vote, decision, agreement, resolution\', 0)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (11, \'Vote: for, against (names)\', 1)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (11, \'Reason for action\', 2)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (11, \'Purpose, time, location\', 3)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (11, \'Discussion, debate; length of meeting\', 4)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (11, \'Quotes from witnesses, experts, audiences\', 5)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (11, \'Audience`s makeup\', 6)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (11, \'Agenda; departures from agenda\', 7)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (11, \'Consequences of action(s)\', 8)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (11, \'Agenda for next meeting\', 9)</item>
+
+        <!--News Conferences-->
+        <item> insert into StoryItemType (story_type_id, label, seq) values (12, \'Major point made in announcement\', 0)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (12, \'Name, identification of speaker(s)\', 1)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (12, \'Background of major point\', 2)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (12, \'Question and answer material\', 3)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (12, \'Consequences of announcement\', 4)</item>
+
+        <!--Obituaries-->
+        <item> insert into StoryItemType (story_type_id, label, seq) values (13, \'Name, age, address, occupation\', 0)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (13, \'Time, place, cause of death\', 1)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (13, \'Birthdate, birthplace\', 2)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (13, \'Survivors (immediate family)\', 3)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (13, \'Funeral and burial arrangements\', 4)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (13, \'Accomplishments\', 5)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (13, \'Education, memberships\', 6)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (13, \'Military service (formal or otherwise)\', 7)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (13, \'Anecdotes, recollections of friends, relatives\', 8)</item>
+
+        <!--Profile-->
+        <item> insert into StoryItemType (story_type_id, label, seq) values (14, \'Name, identification of subject\', 0)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (14, \'Background (birth, upbringing, education, jobs)\', 1)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (14, \'Theme\', 2)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (14, \'Reason for profile (news value)\', 3)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (14, \'Anecdotes and incidents (from subject, friends, accociates)\', 4)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (14, \'Physical description (do NOT use words like `attractive`)\', 5)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (14, \'Observations of subject at work, play, home; mannerisms, gestures\', 6)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (14, \'Quotes, quotes, quotes\', 7)</item>
+
+        <!--Speeches-->
+        <item> insert into StoryItemType (story_type_id, label, seq) values (15, \'Speaker`s main point\', 0)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (15, \'Name, identification of speaker\', 1)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (15, \'Quotes to support main point\', 2)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (15, \'Purpose, time, location of speech\', 3)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (15, \'Audience: number, makeup, reactions\', 4)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (15, \'Additional points raised by speaker\', 5)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (15, \'Background to major point\', 6)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (15, \'Speaker`s comments before, after speech\', 7)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (15, \'Question and answer period, if any\', 8)</item>
+
+        <!--Sports - Game Coverage-->
+        <item> insert into StoryItemType (story_type_id, label, seq) values (16, \'Score\', 0)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (16, \'Name of teams, type of sport\', 1)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (16, \'Where, when game took place\', 2)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (16, \'Key play, strategy; turning point of game\', 3)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (16, \'Outstanding player(s)\', 4)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (16, \'Effect on standings, rankings, individual records\', 5)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (16, \'Scoring pattern\', 6)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (16, \'Winning/losing streaks, records involved by team, player\', 7)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (16, \'Postgame comments\', 8)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (16, \'Crowd size, behaviour (only if relevant)\', 9)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (16, \'Injuries (if any)\', 10)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (16, \'Duration of game\', 11)</item>
+        <item> insert into StoryItemType (story_type_id, label, seq) values (16, \'Statistics\', 12)</item>
+
 
     </string-array>
 

@@ -11,7 +11,7 @@ import android.util.Log;
 public class DbHelper extends SQLiteOpenHelper {
 
     private static final int VERSION = 1;
-    private static final String NAME = "baobab.db";
+    private static final String NAME = "story-check.db";
     private Context context;
 
     public DbHelper(Context context) {
@@ -23,11 +23,17 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         Log.i(DbHelper.class.getSimpleName(), "Creating database tables...");
         Resources res = context.getResources();
-        for (String createScript : res.getStringArray(R.array.scripts_v2)) {
+        for (String createScript : res.getStringArray(R.array.create_db)) {
             Log.i(DbHelper.class.getSimpleName(), "Executing '" + createScript + "' on " + db.getPath() + " (v" + db.getVersion() + ")");
             db.execSQL(createScript);
         }
         Log.i(DbHelper.class.getSimpleName(), "...Done creating database tables.");
+        Log.i(DbHelper.class.getSimpleName(), "...Inserting initial data.");
+        for (String createScript : res.getStringArray(R.array.insert_init_data)) {
+            Log.i(DbHelper.class.getSimpleName(), "Executing '" + createScript + "' on " + db.getPath() + " (v" + db.getVersion() + ")");
+            db.execSQL(createScript);
+        }
+        Log.i(DbHelper.class.getSimpleName(), "...Done inserting initial data.");
     }
 
     @Override
