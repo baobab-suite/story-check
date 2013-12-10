@@ -29,8 +29,9 @@
         <item name="android:actionModeBackground">@drawable/cab_background_top_storycheck</item>
         <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_storycheck</item>
         <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Storycheck</item>
-        
-                <!-- Light.DarkActionBar specific -->
+        <item name="android:textAppearance">@style/Theme.Storycheck.Text</item>
+
+        <!-- Light.DarkActionBar specific -->
         <item name="android:actionBarWidgetTheme">@style/Theme.Storycheck.Widget</item>
 
     </style>
@@ -77,6 +78,12 @@
     <style name="Theme.Storycheck.Widget" parent="@android:style/Theme.Holo">
         <item name="android:popupMenuStyle">@style/PopupMenu.Storycheck</item>
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Storycheck</item>
+    </style>
+    <style name="Theme.Storycheck.TextView">
+        <item name="android:textColor">@color/note_no_text</item>
+    </style>
+    <style name="Theme.Storycheck.Text">
+        <item name="android:textColor">@color/note_no_text</item>
     </style>
 
 </resources>

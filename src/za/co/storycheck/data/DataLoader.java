@@ -1,4 +1,4 @@
-package com.baobab.android.storycheck.data;
+package za.co.storycheck.data;
 
 import com.baobab.android.storycheck.model.Item;
 import com.baobab.android.storycheck.model.Story;

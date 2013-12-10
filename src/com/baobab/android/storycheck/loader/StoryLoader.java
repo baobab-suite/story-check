@@ -1,7 +1,5 @@
 package com.baobab.android.storycheck.loader;
 
-import com.baobab.android.storycheck.R;
-import com.baobab.android.storycheck.data.DataLoader;
 import com.baobab.android.storycheck.model.Story;
 
 import java.io.IOException;
@@ -9,6 +7,8 @@ import java.io.IOException;
 import android.content.Context;
 import android.support.v4.content.AsyncTaskLoader;
 import android.util.Log;
+import za.co.storycheck.R;
+import za.co.storycheck.data.DataLoader;
 
 /**
  * Created with IntelliJ IDEA.

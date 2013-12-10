@@ -1,4 +1,4 @@
-package com.baobab.android.storycheck;
+package za.co.storycheck;
 
 import android.app.ActionBar;
 import android.content.Intent;
@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import za.co.storycheck.AddStoryActivity;
-import za.co.storycheck.R;
 
 public class StoryListActivity extends FragmentActivity {
     /**

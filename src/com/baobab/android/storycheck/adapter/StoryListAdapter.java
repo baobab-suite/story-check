@@ -1,6 +1,6 @@
 package com.baobab.android.storycheck.adapter;
 
-import com.baobab.android.storycheck.R;
+import za.co.storycheck.R;
 import com.baobab.android.storycheck.model.Story;
 
 import java.util.ArrayList;

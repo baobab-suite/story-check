@@ -1,4 +1,9 @@
 <resources>
+
+    <string name="provider_authority">za.co.storycheck</string>
+    <string name="provider_story_type">story.type</string>
+    <string name="sql_query_all_StoryType">select * from StoryType order by seq</string>
+    <string name="sql_query_all_Story">select * from Story where not deleted order by create_date</string>
     <string-array name="create_db">
 
         <item>
@@ -8,7 +13,7 @@
             CREATE TABLE IF NOT EXISTS StoryItemType (_id INTEGER PRIMARY KEY, story_type_id INTEGER NOT NULL, label TEXT NOT NULL, seq INTEGER NOT NULL)
         </item>
         <item>
-            CREATE TABLE IF NOT EXISTS Story (_id INTEGER PRIMARY KEY, headline TEXT, create_date INTEGER, type TEXT)
+            CREATE TABLE IF NOT EXISTS Story (_id INTEGER PRIMARY KEY, headline TEXT, create_date INTEGER, type TEXT, last_edit_date INTEGER, deleted BOOLEAN)
         </item>
         <item>
             CREATE TABLE IF NOT EXISTS StoryItem (_id INTEGER PRIMARY KEY, story_id INTEGER NOT NULL, state INTEGER NOT NULL,

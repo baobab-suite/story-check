@@ -1,4 +1,4 @@
-package com.baobab.android.storycheck.data;
+package za.co.storycheck.data;
 
 import android.content.Context;
 import android.database.Cursor;

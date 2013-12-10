@@ -10,4 +10,8 @@
     <string name="delete">Delete</string>
     <string name="share">share</string>
     <string name="tips">Tips</string>
+    <string name="headline">Headline</string>
+    <string name="story_type">Story type</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 </resources>

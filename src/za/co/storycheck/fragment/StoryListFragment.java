@@ -1,14 +1,10 @@
-package com.baobab.android.storycheck.fragment;
+package za.co.storycheck.fragment;
 
 import com.baobab.android.storycheck.StoryActivity;
-import com.baobab.android.storycheck.adapter.StoryListAdapter;
-import com.baobab.android.storycheck.loader.LoaderResult;
-import com.baobab.android.storycheck.loader.StoryListLoader;
 import com.baobab.android.storycheck.model.Story;
 
-import java.util.List;
-
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -19,7 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import za.co.storycheck.R;
+import za.co.storycheck.data.RawQueryLoader;
 
 /**
  * Created with IntelliJ IDEA.
@@ -28,9 +26,11 @@ import za.co.storycheck.R;
  * Time: 2:49 PM
  * To change this template use File | Settings | File Templates.
  */
-public class StoryListFragment extends Fragment implements LoaderManager.LoaderCallbacks<LoaderResult<List<Story>>> {
+public class StoryListFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    private StoryListAdapter adapter = new StoryListAdapter();
+    private SimpleCursorAdapter adapter;
+    private ListView listView;
+    private String[] select = new String[]{"headline", "type"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,8 @@ public class StoryListFragment extends Fragment implements LoaderManager.LoaderC
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getLoaderManager().initLoader(0, savedInstanceState, this);
-        ListView listView = (ListView) view.findViewById(R.id.lv_story_type);
+        listView = (ListView) view.findViewById(R.id.lv_story_type);
+        adapter = new SimpleCursorAdapter(getActivity(), R.layout.story_row, null, select, new int[] {R.id.tv_label, R.id.tv_type}, 0);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -60,15 +61,15 @@ public class StoryListFragment extends Fragment implements LoaderManager.LoaderC
         });
     }
 
-    public Loader<LoaderResult<List<Story>>> onCreateLoader(int i, Bundle bundle) {
-        return new StoryListLoader(getActivity());
+    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+        return new RawQueryLoader(getActivity(), R.string.sql_query_all_Story, null);
     }
 
-    public void onLoadFinished(Loader<LoaderResult<List<Story>>> loader, LoaderResult<List<Story>> result) {
-        adapter.setData(result.getData());
+    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+        adapter.swapCursor(cursor);
     }
 
-    public void onLoaderReset(Loader<LoaderResult<List<Story>>> listLoader) {
-        adapter.clear();
+    public void onLoaderReset(Loader<Cursor> cursorLoader) {
+        adapter.swapCursor(null);
     }
 }

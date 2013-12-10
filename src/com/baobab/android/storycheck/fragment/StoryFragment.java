@@ -1,8 +1,6 @@
 package com.baobab.android.storycheck.fragment;
 
-import com.baobab.android.storycheck.R;
 import com.baobab.android.storycheck.adapter.ChecklistAdapter;
-import com.baobab.android.storycheck.data.DataLoader;
 import com.baobab.android.storycheck.loader.LoaderResult;
 import com.baobab.android.storycheck.loader.StoryLoader;
 import com.baobab.android.storycheck.model.Story;
@@ -21,6 +19,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ListView;
+import za.co.storycheck.R;
+import za.co.storycheck.data.DataLoader;
 
 /**
  * Created with IntelliJ IDEA.

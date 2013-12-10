@@ -1,6 +1,6 @@
-package com.baobab.android.storycheck.data;
+package za.co.storycheck.data;
 
-import com.baobab.android.storycheck.R;
+import za.co.storycheck.R;
 
 import android.content.Context;
 import android.content.res.Resources;
