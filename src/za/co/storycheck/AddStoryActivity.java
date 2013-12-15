@@ -70,7 +70,7 @@ public class AddStoryActivity extends FragmentActivity implements LoaderManager.
                 try {
                     long storyId = writableDatabase.insert("Story", null, values);
                     String insert = getResources().getString(R.string.sql_query_copy_story_item);
-                    writableDatabase.execSQL(insert, new String[] {String.valueOf(storyId), String.valueOf(typeId)});
+                    writableDatabase.execSQL(insert, new Object[] {storyId, typeId});
                     writableDatabase.setTransactionSuccessful();
                 } finally {
                     writableDatabase.endTransaction();
