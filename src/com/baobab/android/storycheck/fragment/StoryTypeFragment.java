@@ -1,6 +1,6 @@
 package com.baobab.android.storycheck.fragment;
 
-import com.baobab.android.storycheck.StoryActivity;
+import za.co.storycheck.StoryActivity;
 import com.baobab.android.storycheck.adapter.StoryTypeAdapter;
 import com.baobab.android.storycheck.loader.LoaderResult;
 import com.baobab.android.storycheck.loader.StoryTypeLoader;

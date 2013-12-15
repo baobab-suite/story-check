@@ -56,7 +56,7 @@ public class AddStoryActivity extends FragmentActivity implements LoaderManager.
                 int position = spinner.getSelectedItemPosition();
                 Cursor cursor = (Cursor) adapter.getItem(position);
                 String type = cursor.getString(cursor.getColumnIndex("name"));
-                int typeId = cursor.getInt(cursor.getColumnIndex("_id"));
+                long typeId = cursor.getLong(cursor.getColumnIndex("_id"));
                 DbHelper dbHelper = new DbHelper(AddStoryActivity.this);
                 SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();
                 ContentValues values = new ContentValues();
@@ -66,7 +66,16 @@ public class AddStoryActivity extends FragmentActivity implements LoaderManager.
                 values.put("create_date", today);
                 values.put("last_edit_date", today);
                 values.put("deleted", false);
-                writableDatabase.insert("Story", null, values);
+                writableDatabase.beginTransaction();
+                try {
+                    long storyId = writableDatabase.insert("Story", null, values);
+                    String insert = getResources().getString(R.string.sql_query_copy_story_item);
+                    writableDatabase.execSQL(insert, new String[] {String.valueOf(storyId), String.valueOf(typeId)});
+                    writableDatabase.setTransactionSuccessful();
+                } finally {
+                    writableDatabase.endTransaction();
+                    writableDatabase.close();
+                }
                 finish();
             }
         });

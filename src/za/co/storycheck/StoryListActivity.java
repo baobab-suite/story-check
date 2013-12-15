@@ -2,10 +2,14 @@ package za.co.storycheck;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 public class StoryListActivity extends FragmentActivity {
     /**
@@ -19,6 +23,20 @@ public class StoryListActivity extends FragmentActivity {
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME
                 | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_CUSTOM);
 //        getActionBar().show();
+        ListView listView = (ListView) findViewById(R.id.lv_story_type);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Cursor cursor = (Cursor) parent.getAdapter().getItem(position);
+                Intent intent = new Intent(StoryListActivity.this, StoryActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                long storyId = cursor.getLong(cursor.getColumnIndex("_id"));
+                intent.putExtra("storyId", storyId);
+                String headline = cursor.getString(cursor.getColumnIndex("headline"));
+                intent.putExtra("headline", headline);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override

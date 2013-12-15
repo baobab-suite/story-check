@@ -14,5 +14,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".AddStoryActivity" />
+        <activity android:name=".StoryActivity" />
     </application>
 </manifest>
