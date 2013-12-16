@@ -13,7 +13,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".AddStoryActivity" />
-        <activity android:name=".StoryActivity" />
+        <activity android:name=".AddStoryActivity"/>
+        <activity android:name=".EditStoryActivity"/>
+        <activity android:name=".StoryActivity"/>
     </application>
 </manifest>

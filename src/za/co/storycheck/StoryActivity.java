@@ -1,6 +1,7 @@
 package za.co.storycheck;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
@@ -34,7 +35,14 @@ public class StoryActivity extends FragmentActivity {
             finish();
             return true;
         case R.id.mi_edit:
-
+            Intent intent = new Intent(this, EditStoryActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            Bundle extras = getIntent().getExtras();
+            intent.putExtra("storyId", extras.getLong("storyId"));
+            intent.putExtra("headline", extras.getString("headline"));
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);

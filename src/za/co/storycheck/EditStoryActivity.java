@@ -1,26 +1,21 @@
 package za.co.storycheck;
 
-import android.app.ActionBar;
 import android.content.ContentValues;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.Loader;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.SimpleCursorAdapter;
-import android.widget.Spinner;
 import za.co.storycheck.data.DbHelper;
-import za.co.storycheck.data.RawQueryLoader;
 
-public class EditStoryActivity extends FragmentActivity implements LoaderManager.LoaderCallbacks<Cursor> {
-    private SimpleCursorAdapter adapter;
+public class EditStoryActivity extends FragmentActivity {
+
+    private EditText et_headline;
+    private long id;
+    private Menu menu;
 
     /**
      * Called when the activity is first created.
@@ -28,22 +23,15 @@ public class EditStoryActivity extends FragmentActivity implements LoaderManager
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.story_add_activity);
-        adapter = new SimpleCursorAdapter(this, R.layout.story_type_spinner_row, null, new String[]{"name"}, new int[]{R.id.tv_label}, 0);
-        final Spinner spinner = (Spinner) findViewById(R.id.sp_story_type);
-        spinner.setAdapter(adapter);
-        getSupportLoaderManager().initLoader(0, savedInstanceState, this);
-        final Button bt_ok = (Button) findViewById(R.id.bt_ok);
-        Button bt_cancel = (Button) findViewById(R.id.bt_cancel);
-        bt_cancel.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                finish();
-            }
-        });
-        final EditText et_headline = (EditText) findViewById(R.id.et_headline);
-        ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("Add a checklist");
+        setContentView(R.layout.story_edit_activity);
+        et_headline = (EditText) findViewById(R.id.et_headline);
+//        ActionBar actionBar = getActionBar();
+//        actionBar.setDisplayHomeAsUpEnabled(true);
+//        actionBar.setTitle("Edit a headline");
+        Bundle extras = getIntent().getExtras();
+        id = extras.getLong("storyId");
+        final String headline = extras.getString("headline");
+        et_headline.setText(headline);
         et_headline.addTextChangedListener(new TextWatcher() {
             public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
             }
@@ -53,59 +41,52 @@ public class EditStoryActivity extends FragmentActivity implements LoaderManager
 
             public void afterTextChanged(Editable editable) {
                 String headline = editable.toString();
-                bt_ok.setEnabled(headline != null && headline.trim().length() > 0);
+                menu.findItem(R.id.mi_ok).setEnabled(headline != null && headline.trim().length() > 0);
             }
         });
-        bt_ok.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                int position = spinner.getSelectedItemPosition();
-                Cursor cursor = (Cursor) adapter.getItem(position);
-                String type = cursor.getString(cursor.getColumnIndex("name"));
-                long typeId = cursor.getLong(cursor.getColumnIndex("_id"));
-                DbHelper dbHelper = new DbHelper(EditStoryActivity.this);
-                SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();
-                ContentValues values = new ContentValues();
-                values.put("headline", et_headline.getText().toString());
-                values.put("type", type);
-                long today = System.currentTimeMillis();
-                values.put("create_date", today);
-                values.put("last_edit_date", today);
-                values.put("deleted", false);
-                writableDatabase.beginTransaction();
-                try {
-                    long storyId = writableDatabase.insert("Story", null, values);
-                    String insert = getResources().getString(R.string.sql_query_copy_story_item);
-                    writableDatabase.execSQL(insert, new Object[] {storyId, typeId});
-                    writableDatabase.setTransactionSuccessful();
-                } finally {
-                    writableDatabase.endTransaction();
-                    writableDatabase.close();
-                }
-                finish();
-            }
-        });
+    }
+
+    private void save() {
+        DbHelper dbHelper = new DbHelper(this);
+        SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("headline", et_headline.getText().toString());
+        values.put("last_edit_date", System.currentTimeMillis());
+        writableDatabase.beginTransaction();
+        try {
+            writableDatabase.update("Story", values, "_id = ?", new String[]{String.valueOf(id)});
+        } finally {
+            writableDatabase.endTransaction();
+            writableDatabase.close();
+        }
+        finish();
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        this.menu = menu;
+        menu.findItem(R.id.mi_ok).setEnabled(false);
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.ok_cancel_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        // Respond to the action bar's Up/Home button
-        case android.R.id.home:
-            finish();
-            return true;
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+            case R.id.mi_cancel:
+                finish();
+                return true;
+            case R.id.mi_ok:
+                save();
+                return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        return new RawQueryLoader(this, R.string.sql_query_all_StoryType, null);
-    }
-
-    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-        adapter.swapCursor(cursor);
-    }
-
-    public void onLoaderReset(Loader<Cursor> cursorLoader) {
-        adapter.swapCursor(null);
     }
 }

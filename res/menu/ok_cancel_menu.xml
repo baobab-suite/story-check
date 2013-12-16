@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/mi_ok"
+          android:title="@string/add_story"
+            android:icon="@drawable/ic_action_accept" android:showAsAction="always">
+    </item>
+    <item android:id="@+id/mi_cancel"
+          android:title="@string/tips_tricks"
+          android:icon="@drawable/ic_action_cancel" android:showAsAction="always">
+    </item>
+
+</menu>

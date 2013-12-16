@@ -51,6 +51,8 @@ public class StoryListActivity extends FragmentActivity {
             case R.id.mi_add:
                 Intent intent = new Intent(this, AddStoryActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
                 return true;
 
