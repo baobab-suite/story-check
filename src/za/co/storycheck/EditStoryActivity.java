@@ -19,7 +19,7 @@ import android.widget.Spinner;
 import za.co.storycheck.data.DbHelper;
 import za.co.storycheck.data.RawQueryLoader;
 
-public class AddStoryActivity extends FragmentActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class EditStoryActivity extends FragmentActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     private SimpleCursorAdapter adapter;
 
     /**
@@ -62,7 +62,7 @@ public class AddStoryActivity extends FragmentActivity implements LoaderManager.
                 Cursor cursor = (Cursor) adapter.getItem(position);
                 String type = cursor.getString(cursor.getColumnIndex("name"));
                 long typeId = cursor.getLong(cursor.getColumnIndex("_id"));
-                DbHelper dbHelper = new DbHelper(AddStoryActivity.this);
+                DbHelper dbHelper = new DbHelper(EditStoryActivity.this);
                 SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();
                 ContentValues values = new ContentValues();
                 values.put("headline", et_headline.getText().toString());

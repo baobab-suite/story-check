@@ -1,6 +1,5 @@
 package com.baobab.android.storycheck.adapter;
 
-import com.baobab.android.storycheck.R;
 import com.baobab.android.storycheck.model.Item;
 import com.baobab.android.storycheck.model.Story;
 import com.baobab.android.storycheck.view.TriStateButton;
@@ -10,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import za.co.storycheck.R;
 
 /**
  * Created with IntelliJ IDEA.
@@ -40,7 +40,7 @@ public class ChecklistAdapter extends BaseAdapter {
         if (view == null || view.getTag() == null) {
             holder = new ViewHolder();
             view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_row, null);
-            holder.bt_state = ((TriStateButton)view.findViewById(R.id.bt_state));
+            holder.bt_state = ((TriStateButton)view.findViewById(R.id.cb_state));
             holder.tv_label = ((TextView)view.findViewById(R.id.tv_label));
             holder.tv_note = ((TextView)view.findViewById(R.id.tv_note));
             view.setTag(holder);
