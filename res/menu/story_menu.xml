@@ -4,7 +4,7 @@
     <item android:id="@+id/mi_edit"
           android:title="@string/delete_story"
           android:titleCondensed="@string/delete"
-          android:icon="@android:drawable/ic_menu_edit" android:showAsAction="ifRoom">
+          android:icon="@drawable/ic_action_edit" android:showAsAction="ifRoom">
     </item>
     <item android:id="@+id/mi_share"
           android:title="@string/share_story"
