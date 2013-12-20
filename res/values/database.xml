@@ -4,6 +4,7 @@
     <string name="provider_story_type">story.type</string>
     <string name="sql_query_all_StoryType">select * from StoryType order by seq</string>
     <string name="sql_query_all_Story">select * from Story where not deleted order by create_date desc</string>
+    <string name="sql_query_Story_by_id">select * from Story where _id = ? </string>
     <string name="sql_query_all_StoryItem">select * from StoryItem where story_id = ? order by seq </string>
     <string name="sql_query_copy_story_item">insert into StoryItem (story_id, state, label, seq, note) select ? as story_id, 0 as state, label, seq, \'\' from StoryItemType where story_type_id = ? </string>
     <string name="sql_query_copy_story_item2">insert into StoryItem (story_id, state, label, seq) select 3 as story_id, 0 as state, label, seq from StoryItemType where story_type_id = 0 </string>

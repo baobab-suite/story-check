@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/mi_edit"
-          android:title="@string/delete_story"
-          android:titleCondensed="@string/delete"
-          android:icon="@drawable/ic_action_edit" android:showAsAction="ifRoom">
-    </item>
     <item android:id="@+id/mi_share"
           android:title="@string/share_story"
           android:titleCondensed="@string/share"
@@ -15,6 +10,11 @@
           android:title="@string/delete_story"
           android:titleCondensed="@string/delete"
           android:icon="@drawable/delete" android:showAsAction="ifRoom">
+    </item>
+    <item android:id="@+id/mi_edit"
+          android:title="@string/delete_story"
+          android:titleCondensed="@string/delete"
+          android:icon="@drawable/ic_action_edit" android:showAsAction="ifRoom">
     </item>
     <item android:id="@+id/mi_tips"
           android:title="@string/tips_tricks"

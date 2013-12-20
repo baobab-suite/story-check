@@ -55,6 +55,7 @@ public class EditStoryActivity extends FragmentActivity {
         writableDatabase.beginTransaction();
         try {
             writableDatabase.update("Story", values, "_id = ?", new String[]{String.valueOf(id)});
+            writableDatabase.setTransactionSuccessful();
         } finally {
             writableDatabase.endTransaction();
             writableDatabase.close();

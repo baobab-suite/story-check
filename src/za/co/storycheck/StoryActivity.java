@@ -2,12 +2,18 @@ package za.co.storycheck;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.view.Menu;
 import android.view.MenuItem;
+import za.co.storycheck.data.RawQueryLoader;
 
-public class StoryActivity extends FragmentActivity {
+public class StoryActivity extends FragmentActivity implements LoaderManager.LoaderCallbacks<Cursor>{
+    private String headline;
+
     /**
      * Called when the activity is first created.
      */
@@ -15,10 +21,11 @@ public class StoryActivity extends FragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.story_activity);
-        String headline = getIntent().getExtras().getString("headline");
+        headline = getIntent().getExtras().getString("headline");
         ActionBar actionBar = getActionBar();
         actionBar.setTitle(headline);
         actionBar.setDisplayHomeAsUpEnabled(true);
+        getSupportLoaderManager().initLoader(R.id.story_activity, savedInstanceState, this);
     }
 
     @Override
@@ -41,10 +48,31 @@ public class StoryActivity extends FragmentActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             Bundle extras = getIntent().getExtras();
             intent.putExtra("storyId", extras.getLong("storyId"));
-            intent.putExtra("headline", extras.getString("headline"));
+            intent.putExtra("headline", headline);
             startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+        Bundle extras = getIntent().getExtras();
+        long storyId = extras.getLong("storyId");
+        return new RawQueryLoader(this, R.string.sql_query_Story_by_id, new String[]{String.valueOf(storyId)});
+    }
+
+    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+        try {
+            if (cursor.moveToFirst()) {
+                headline = cursor.getString(cursor.getColumnIndex("headline"));
+                getActionBar().setTitle(headline);
+            }
+        } finally {
+            cursor.close();
+        }
+    }
+
+    public void onLoaderReset(Loader<Cursor> cursorLoader) {
+        // Do nothing
     }
 }
