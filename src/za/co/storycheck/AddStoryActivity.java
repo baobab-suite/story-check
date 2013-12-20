@@ -1,14 +1,13 @@
 package za.co.storycheck;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -21,7 +20,6 @@ public class AddStoryActivity extends FragmentActivity implements LoaderManager.
     private SimpleCursorAdapter adapter;
     private Spinner spinner;
     private EditText et_headline;
-    private Menu menu;
 
     /**
      * Called when the activity is first created.
@@ -36,27 +34,8 @@ public class AddStoryActivity extends FragmentActivity implements LoaderManager.
         getSupportLoaderManager().initLoader(0, savedInstanceState, this);
         et_headline = (EditText) findViewById(R.id.et_headline);
         setTitle(R.string.add_story);
-        et_headline.addTextChangedListener(new TextWatcher() {
-            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-            }
-
-            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-            }
-
-            public void afterTextChanged(Editable editable) {
-                String headline = editable.toString();
-                boolean enabled = headline != null && headline.trim().length() > 0;
-                menu.findItem(R.id.mi_ok).setEnabled(enabled);
-            }
-        });
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        this.menu = menu;
-        menu.findItem(R.id.mi_ok).setEnabled(false);
-        return super.onPrepareOptionsMenu(menu);
-    }
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+     }
 
     private void add() {
         int position = spinner.getSelectedItemPosition();
@@ -66,15 +45,17 @@ public class AddStoryActivity extends FragmentActivity implements LoaderManager.
         DbHelper dbHelper = new DbHelper(this);
         SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("headline", et_headline.getText().toString());
+        String headline = et_headline.getText().toString();
+        values.put("headline", headline);
         values.put("type", type);
         long today = System.currentTimeMillis();
         values.put("create_date", today);
         values.put("last_edit_date", today);
         values.put("deleted", false);
         writableDatabase.beginTransaction();
+        long storyId;
         try {
-            long storyId = writableDatabase.insert("Story", null, values);
+            storyId = writableDatabase.insert("Story", null, values);
             String insert = getResources().getString(R.string.sql_query_copy_story_item);
             writableDatabase.execSQL(insert, new Object[]{storyId, typeId});
             writableDatabase.setTransactionSuccessful();
@@ -82,6 +63,11 @@ public class AddStoryActivity extends FragmentActivity implements LoaderManager.
             writableDatabase.endTransaction();
             writableDatabase.close();
         }
+        Intent intent = new Intent(this, StoryActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("storyId", storyId);
+        intent.putExtra("headline", headline);
+        startActivity(intent);
         finish();
     }
 

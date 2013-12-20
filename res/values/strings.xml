@@ -8,11 +8,17 @@
     <string name="tips_tricks">Tips and Tricks</string>
     <string name="add_story">Add Checklist</string>
     <string name="delete">Delete</string>
-    <string name="share">share</string>
+    <string name="share">Share</string>
     <string name="tips">Tips</string>
     <string name="headline">Headline</string>
     <string name="story_type">Story type</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="confirm_delete">Are you sure you want to delete the checklist for story:</string>
+    <string name="headline_hint">Story headline goes here</string>
+    <string name="delete_checklist">Delete checklist</string>
+    <string name="edit_story">Change headline</string>
+    <string name="add_checklist_helptext">Adding a headline to your checklist makes it easier to identify later when all
+        the checklists are displayed in a list
+    </string>
 </resources>

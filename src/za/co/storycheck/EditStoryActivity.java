@@ -1,11 +1,10 @@
 package za.co.storycheck;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -15,7 +14,6 @@ public class EditStoryActivity extends Activity {
 
     private EditText et_headline;
     private long id;
-    private Menu menu;
 
     /**
      * Called when the activity is first created.
@@ -25,25 +23,13 @@ public class EditStoryActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.story_edit_activity);
         et_headline = (EditText) findViewById(R.id.et_headline);
-//        ActionBar actionBar = getActionBar();
-//        actionBar.setDisplayHomeAsUpEnabled(true);
-//        actionBar.setTitle("Edit a headline");
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(getString(R.string.edit_story));
         Bundle extras = getIntent().getExtras();
         id = extras.getLong("storyId");
         final String headline = extras.getString("headline");
         et_headline.setText(headline);
-        et_headline.addTextChangedListener(new TextWatcher() {
-            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-            }
-
-            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-            }
-
-            public void afterTextChanged(Editable editable) {
-                String headline = editable.toString();
-                menu.findItem(R.id.mi_ok).setEnabled(headline != null && headline.trim().length() > 0);
-            }
-        });
     }
 
     private void save() {
@@ -61,13 +47,6 @@ public class EditStoryActivity extends Activity {
             writableDatabase.close();
         }
         finish();
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        this.menu = menu;
-        menu.findItem(R.id.mi_ok).setEnabled(false);
-        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override

@@ -11,13 +11,23 @@
             android:layout_height="fill_parent"
             android:gravity="center"
             android:layout_marginLeft="16dp"
+            android:layout_alignParentLeft="true"
             />
-
+    <ImageButton
+            android:id="@+id/bt_delete"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_action_cancel"
+            android:visibility="gone"
+            />
     <TextView
             android:id="@+id/tv_label"
             android:layout_toRightOf="@id/cb_state"
-            android:layout_height="44dp"
-            android:gravity="top"
+            android:layout_toLeftOf="@id/bt_delete"
+            android:layout_height="48dp"
+            android:layout_width="wrap_content"
+            android:gravity="center_vertical"
             android:text="This is the headline that is very long"
             android:textSize="17sp"
             android:maxLines="2"
@@ -26,7 +36,6 @@
             android:layout_marginTop="4dp"
             android:layout_marginBottom="0dp"
             android:layout_marginRight="8dp"
-            android:layout_width="fill_parent"
             />
 
     <TextView

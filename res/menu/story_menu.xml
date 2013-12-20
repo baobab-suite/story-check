@@ -16,10 +16,10 @@
           android:titleCondensed="@string/delete"
           android:icon="@drawable/ic_action_edit" android:showAsAction="ifRoom">
     </item>
-    <item android:id="@+id/mi_tips"
-          android:title="@string/tips_tricks"
-          android:titleCondensed="@string/tips"
-          android:icon="@drawable/tips">
-    </item>
+    <!--<item android:id="@+id/mi_tips"-->
+          <!--android:title="@string/tips_tricks"-->
+          <!--android:titleCondensed="@string/tips"-->
+          <!--android:icon="@drawable/tips">-->
+    <!--</item>-->
 
 </menu>

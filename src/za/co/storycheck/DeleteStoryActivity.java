@@ -1,5 +1,6 @@
 package za.co.storycheck;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -21,6 +22,9 @@ public class DeleteStoryActivity extends Activity {
         Bundle extras = getIntent().getExtras();
         final String headline = extras.getString("headline");
         tv_headline.setText(headline);
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(getString(R.string.delete_checklist));
     }
 
     private void delete() {
