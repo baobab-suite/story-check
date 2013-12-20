@@ -1,5 +1,8 @@
 package za.co.storycheck;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -8,6 +11,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -42,8 +46,6 @@ public class AddStoryActivity extends FragmentActivity implements LoaderManager.
         Cursor cursor = (Cursor) adapter.getItem(position);
         String type = cursor.getString(cursor.getColumnIndex("name"));
         long typeId = cursor.getLong(cursor.getColumnIndex("_id"));
-        DbHelper dbHelper = new DbHelper(this);
-        SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         String headline = et_headline.getText().toString();
         values.put("headline", headline);
@@ -51,7 +53,10 @@ public class AddStoryActivity extends FragmentActivity implements LoaderManager.
         long today = System.currentTimeMillis();
         values.put("create_date", today);
         values.put("last_edit_date", today);
+        values.put("create_date_str", new SimpleDateFormat("dd.MM.yyyy").format(new Date(today)));
         values.put("deleted", false);
+        DbHelper dbHelper = DbHelper.getHelper(this);
+        SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();
         writableDatabase.beginTransaction();
         long storyId;
         try {
@@ -61,8 +66,11 @@ public class AddStoryActivity extends FragmentActivity implements LoaderManager.
             writableDatabase.setTransactionSuccessful();
         } finally {
             writableDatabase.endTransaction();
-            writableDatabase.close();
+//            writableDatabase.close();
         }
+        Intent updateStoryStateIntent = new Intent("update_story_state");
+        updateStoryStateIntent.putExtra("storyId", storyId);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(updateStoryStateIntent);
         Intent intent = new Intent(this, StoryActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("storyId", storyId);

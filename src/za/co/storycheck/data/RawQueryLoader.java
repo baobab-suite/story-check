@@ -25,7 +25,7 @@ public class RawQueryLoader extends AsyncTaskLoader<Cursor> {
 
     public RawQueryLoader(Context context, int sql, String[] args) {
         super(context);
-        this.sql =context.getResources().getString(sql);
+        this.sql = context.getResources().getString(sql);
         this.args = args;
     }
 
@@ -37,9 +37,23 @@ public class RawQueryLoader extends AsyncTaskLoader<Cursor> {
 
     @Override
     public Cursor loadInBackground() {
-        DbHelper dbHelper = new DbHelper(getContext());
-        SQLiteDatabase readableDatabase = dbHelper.getReadableDatabase();
+        DbHelper dbHelper = DbHelper.getHelper(getContext());
+        SQLiteDatabase readableDatabase = null;
+////        while (true) {
+//            try {
+//                readableDatabase = dbHelper.getReadableDatabase();
+////                break;
+//            } catch (SQLiteDatabaseLockedException e) {
+//                try {
+//                    Thread.sleep(100);
+//                } catch (InterruptedException e1) {
+//                    //Do Nothing
+//                }
+//                //Do nothing
+//            }
+////        }
         try {
+            readableDatabase = dbHelper.getWritableDatabase();
             return readableDatabase.rawQuery(sql, args);
         } finally {
 //            dbHelper.close();

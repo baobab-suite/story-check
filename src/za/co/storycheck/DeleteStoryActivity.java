@@ -30,7 +30,7 @@ public class DeleteStoryActivity extends Activity {
     private void delete() {
         Bundle extras = getIntent().getExtras();
         long id = extras.getLong("storyId");
-        DbHelper dbHelper = new DbHelper(this);
+        DbHelper dbHelper = DbHelper.getHelper(this);
         SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();
         writableDatabase.beginTransaction();
         try {
@@ -40,7 +40,7 @@ public class DeleteStoryActivity extends Activity {
             writableDatabase.setTransactionSuccessful();
         } finally {
             writableDatabase.endTransaction();
-            writableDatabase.close();
+//            writableDatabase.close();
         }
         finish();
     }

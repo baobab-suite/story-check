@@ -1,12 +1,11 @@
 package za.co.storycheck.data;
 
-import za.co.storycheck.R;
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import za.co.storycheck.R;
 
 public class DbHelper extends SQLiteOpenHelper {
 
@@ -56,5 +55,14 @@ public class DbHelper extends SQLiteOpenHelper {
             db.execSQL(script);
         }
         Log.i(DbHelper.class.getSimpleName(), "...Done upgrading from v" + version + ".");
+    }
+
+    static DbHelper dbHelper;
+
+    public synchronized static DbHelper getHelper(Context context) {
+        if(dbHelper == null){
+            dbHelper = new DbHelper(context);
+        }
+        return dbHelper;
     }
 }

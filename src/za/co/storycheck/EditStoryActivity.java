@@ -33,7 +33,7 @@ public class EditStoryActivity extends Activity {
     }
 
     private void save() {
-        DbHelper dbHelper = new DbHelper(this);
+        DbHelper dbHelper = DbHelper.getHelper(this);
         SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("headline", et_headline.getText().toString());
@@ -44,7 +44,7 @@ public class EditStoryActivity extends Activity {
             writableDatabase.setTransactionSuccessful();
         } finally {
             writableDatabase.endTransaction();
-            writableDatabase.close();
+//            writableDatabase.close();
         }
         finish();
     }

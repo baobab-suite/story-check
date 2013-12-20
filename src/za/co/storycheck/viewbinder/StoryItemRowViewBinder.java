@@ -29,13 +29,14 @@ public class StoryItemRowViewBinder implements SimpleCursorAdapter.ViewBinder {
             checkBox.setOnCheckedChangeListener(null);
             checkBox.setChecked(state == 1);
             final long id = cursor.getLong(cursor.getColumnIndex("_id"));
+            final long storyId = cursor.getLong(cursor.getColumnIndex("story_id"));
             final Context context = view.getContext();
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 public void onCheckedChanged(CompoundButton compoundButton, final boolean b) {
                     AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
                         @Override
                         protected Void doInBackground(Void... voids) {
-                            DbHelper dbHelper = new DbHelper(context);
+                            DbHelper dbHelper = DbHelper.getHelper(context);
                             SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();
                             ContentValues values = new ContentValues();
 //                            values.put("_id", cursor.getLong(cursor.getColumnIndex("_id")));
@@ -44,12 +45,16 @@ public class StoryItemRowViewBinder implements SimpleCursorAdapter.ViewBinder {
                             try {
                                 int count = writableDatabase.update("StoryItem", values, " _id = ?", new String[]{String.valueOf(id)});
                                 writableDatabase.setTransactionSuccessful();
-                                Intent intent = new Intent("reload_story");
-                                LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
                             } finally {
                                 writableDatabase.endTransaction();
-                                writableDatabase.close();
+//                                writableDatabase.close();
                             }
+                            Intent updateStoryStateIntent = new Intent("update_story_state");
+                            updateStoryStateIntent.putExtra("storyId", storyId);
+                            LocalBroadcastManager.getInstance(context).sendBroadcast(updateStoryStateIntent);
+//                            new StoryStateUpdater().onReceive(context, updateStoryStateIntent);
+                            Intent reloadIntent = new Intent("reload_story");
+                            LocalBroadcastManager.getInstance(context).sendBroadcast(reloadIntent);
                             return null;
                         }
                     };

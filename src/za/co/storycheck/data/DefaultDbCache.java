@@ -15,7 +15,7 @@ public class DefaultDbCache {
 
     public DefaultDbCache(Context ctx) throws Exception {
         context = ctx;
-        dbHelper = new DbHelper(context);
+        dbHelper = DbHelper.getHelper(context);
     }
 
     /**
