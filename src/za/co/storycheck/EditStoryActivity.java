@@ -1,9 +1,9 @@
 package za.co.storycheck;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import za.co.storycheck.data.DbHelper;
 
-public class EditStoryActivity extends FragmentActivity {
+public class EditStoryActivity extends Activity {
 
     private EditText et_headline;
     private long id;

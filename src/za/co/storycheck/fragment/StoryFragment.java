@@ -66,7 +66,7 @@ public class StoryFragment extends Fragment implements LoaderManager.LoaderCallb
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         Bundle extras = getActivity().getIntent().getExtras();
         long storyId = extras.getLong("storyId");
-        return new RawQueryLoader(getActivity(), R.string.sql_query_all_StoryItem, new String[]{String.valueOf(storyId)});
+        return new RawQueryLoader(getActivity(), R.string.sql_query_StoryItem_by_story_id, new String[]{String.valueOf(storyId)});
     }
 
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {

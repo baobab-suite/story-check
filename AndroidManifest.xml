@@ -15,6 +15,7 @@
         </activity>
         <activity android:name=".AddStoryActivity"/>
         <activity android:name=".EditStoryActivity"/>
+        <activity android:name=".DeleteStoryActivity"/>
         <activity android:name=".StoryActivity"/>
     </application>
 </manifest>

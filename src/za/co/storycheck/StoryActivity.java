@@ -42,17 +42,34 @@ public class StoryActivity extends FragmentActivity implements LoaderManager.Loa
             finish();
             return true;
         case R.id.mi_edit:
-            Intent intent = new Intent(this, EditStoryActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            Bundle extras = getIntent().getExtras();
-            intent.putExtra("storyId", extras.getLong("storyId"));
-            intent.putExtra("headline", headline);
-            startActivity(intent);
+            editStory();
+            return true;
+        case R.id.mi_delete:
+            deleteStory();
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void deleteStory() {
+        Intent intent = new Intent(this, DeleteStoryActivity.class);
+        sartStoryActivity(intent);
+        finish();
+    }
+
+    private void editStory() {
+        Intent intent = new Intent(this, EditStoryActivity.class);
+        sartStoryActivity(intent);
+    }
+
+    private void sartStoryActivity(Intent intent) {
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        Bundle extras = getIntent().getExtras();
+        intent.putExtra("storyId", extras.getLong("storyId"));
+        intent.putExtra("headline", headline);
+        startActivity(intent);
     }
 
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {

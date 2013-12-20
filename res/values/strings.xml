@@ -14,4 +14,5 @@
     <string name="story_type">Story type</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
+    <string name="confirm_delete">Are you sure you want to delete the checklist for story:</string>
 </resources>

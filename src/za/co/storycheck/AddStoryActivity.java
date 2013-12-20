@@ -36,9 +36,6 @@ public class AddStoryActivity extends FragmentActivity implements LoaderManager.
         getSupportLoaderManager().initLoader(0, savedInstanceState, this);
         et_headline = (EditText) findViewById(R.id.et_headline);
         setTitle(R.string.add_story);
-//        ActionBar actionBar = getActionBar();
-//        actionBar.setDisplayHomeAsUpEnabled(true);
-//        actionBar.setTitle("Add a checklist");
         et_headline.addTextChangedListener(new TextWatcher() {
             public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
             }
