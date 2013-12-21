@@ -32,7 +32,7 @@
         <item> insert into StoryType (_id, name, seq) values (0, \'Accidents\', 0)</item>
         <item> insert into StoryType (_id, name, seq) values (1, \'Biography\', 1)</item>
         <item> insert into StoryType (_id, name, seq) values (2, \'Budget Adoption\', 2)</item>
-        <item> insert into StoryType (_id, name, seq) values (3, \'Courts - iil Action\', 3)</item>
+        <item> insert into StoryType (_id, name, seq) values (3, \'Courts - Civil Action\', 3)</item>
         <item> insert into StoryType (_id, name, seq) values (4, \'Courts - Verdict Stories\', 4)</item>
         <item> insert into StoryType (_id, name, seq) values (5, \'Crime\', 5)</item>
         <item> insert into StoryType (_id, name, seq) values (6, \'Disasters\', 6)</item>
