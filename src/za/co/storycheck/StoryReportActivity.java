@@ -1,5 +1,7 @@
 package za.co.storycheck;
 
+import com.google.analytics.tracking.android.EasyTracker;
+
 import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -12,6 +14,7 @@ public class StoryReportActivity extends FragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EasyTracker.getInstance(this).activityStart(this);
         setContentView(R.layout.story_report);
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME

@@ -1,5 +1,7 @@
 package za.co.storycheck;
 
+import com.google.analytics.tracking.android.EasyTracker;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,6 +19,7 @@ public class DeleteStoryActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EasyTracker.getInstance(this).activityStart(this);
         setContentView(R.layout.story_delete_activity);
         TextView tv_headline = (TextView) findViewById(R.id.tv_headline);
         Bundle extras = getIntent().getExtras();

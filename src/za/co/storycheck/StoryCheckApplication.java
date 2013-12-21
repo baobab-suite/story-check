@@ -1,5 +1,7 @@
 package za.co.storycheck;
 
+import com.google.analytics.tracking.android.EasyTracker;
+
 import android.app.Application;
 import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
@@ -20,6 +22,7 @@ public class StoryCheckApplication extends Application{
         super.onCreate();
         LocalBroadcastManager.getInstance(this).registerReceiver(new StoryStateUpdater(), new IntentFilter("update_story_state"));
     }
+
 
     @Override
     public void onTerminate() {

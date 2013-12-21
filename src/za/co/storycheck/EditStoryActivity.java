@@ -1,5 +1,7 @@
 package za.co.storycheck;
 
+import com.google.analytics.tracking.android.EasyTracker;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.ContentValues;
@@ -21,6 +23,7 @@ public class EditStoryActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EasyTracker.getInstance(this).activityStart(this);
         setContentView(R.layout.story_edit_activity);
         et_headline = (EditText) findViewById(R.id.et_headline);
         ActionBar actionBar = getActionBar();
