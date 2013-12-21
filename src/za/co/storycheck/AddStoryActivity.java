@@ -1,5 +1,7 @@
 package za.co.storycheck;
 
+import com.google.analytics.tracking.android.EasyTracker;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -31,6 +33,7 @@ public class AddStoryActivity extends FragmentActivity implements LoaderManager.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EasyTracker.getInstance(this).activityStart(this);
         setContentView(R.layout.story_add_activity);
         adapter = new SimpleCursorAdapter(this, R.layout.story_type_spinner_row, null, new String[]{"name"}, new int[]{R.id.tv_label}, 0);
         spinner = (Spinner) findViewById(R.id.sp_story_type);
