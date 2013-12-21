@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/mi_share"
-          android:title="@string/share_story"
-          android:titleCondensed="@string/share"
-          android:icon="@drawable/share" android:showAsAction="ifRoom">
+    <item android:id="@+id/mi_report"
+          android:title="@string/report_story"
+          android:titleCondensed="@string/report"
+          android:icon="@drawable/ic_action_view_as_list"
+          android:showAsAction="ifRoom">
     </item>
     <item android:id="@+id/mi_delete"
           android:title="@string/delete_story"
           android:titleCondensed="@string/delete"
-          android:icon="@drawable/delete" android:showAsAction="ifRoom">
+          android:icon="@drawable/delete"
+          android:showAsAction="ifRoom">
     </item>
     <item android:id="@+id/mi_edit"
           android:title="@string/delete_story"
           android:titleCondensed="@string/delete"
-          android:icon="@drawable/ic_action_edit" android:showAsAction="ifRoom">
+          android:icon="@drawable/ic_action_edit"
+          android:showAsAction="ifRoom">
     </item>
     <!--<item android:id="@+id/mi_tips"-->
           <!--android:title="@string/tips_tricks"-->

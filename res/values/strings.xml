@@ -21,4 +21,6 @@
     <string name="add_checklist_helptext">Adding a headline to your checklist makes it easier to identify later when all
         the checklists are displayed in a list
     </string>
+    <string name="report">Report</string>
+    <string name="report_story">View Report</string>
 </resources>

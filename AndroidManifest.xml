@@ -19,5 +19,6 @@
         <activity android:name=".EditStoryActivity"/>
         <activity android:name=".DeleteStoryActivity"/>
         <activity android:name=".StoryActivity"/>
+        <activity android:name=".StoryReportActivity"/>
     </application>
 </manifest>

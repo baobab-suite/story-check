@@ -9,7 +9,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.view.Menu;
 import android.view.MenuItem;
-import za.co.storycheck.data.RawQueryLoader;
+import za.co.storycheck.loaders.RawQueryLoader;
 
 public class StoryActivity extends FragmentActivity implements LoaderManager.LoaderCallbacks<Cursor>{
     private String headline;
@@ -47,8 +47,16 @@ public class StoryActivity extends FragmentActivity implements LoaderManager.Loa
         case R.id.mi_delete:
             deleteStory();
             return true;
+        case R.id.mi_report:
+            reportStory();
+            return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void reportStory() {
+        Intent intent = new Intent(this, StoryReportActivity.class);
+        sartStoryActivity(intent);
     }
 
     private void deleteStory() {

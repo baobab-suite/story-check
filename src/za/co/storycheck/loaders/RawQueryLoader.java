@@ -1,9 +1,10 @@
-package za.co.storycheck.data;
+package za.co.storycheck.loaders;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.content.AsyncTaskLoader;
+import za.co.storycheck.data.DbHelper;
 
 /**
  * Created with IntelliJ IDEA.

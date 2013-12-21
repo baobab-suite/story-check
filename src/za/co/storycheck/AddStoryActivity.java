@@ -18,7 +18,7 @@ import android.widget.EditText;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import za.co.storycheck.data.DbHelper;
-import za.co.storycheck.data.RawQueryLoader;
+import za.co.storycheck.loaders.RawQueryLoader;
 
 public class AddStoryActivity extends FragmentActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     private SimpleCursorAdapter adapter;

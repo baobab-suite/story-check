@@ -16,7 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import za.co.storycheck.R;
-import za.co.storycheck.data.RawQueryLoader;
+import za.co.storycheck.loaders.RawQueryLoader;
 import za.co.storycheck.viewbinder.StoryItemRowViewBinder;
 
 /**

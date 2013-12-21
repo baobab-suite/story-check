@@ -6,6 +6,7 @@
     <string name="sql_query_all_Story">select * from Story where not deleted order by create_date desc</string>
     <string name="sql_query_Story_by_id">select * from Story where _id = ? </string>
     <string name="sql_query_StoryItem_by_story_id">select * from StoryItem where story_id = ? and state &lt; 2 order by seq</string>
+    <string name="sql_query_StoryItem_for_report">select * from StoryItem where story_id = ? order by state</string>
     <string name="sql_query_count_StoryItem_by_story_id_and_state">select count(*) from StoryItem where story_id = ? and state = ? </string>
     <string name="sql_delete_StoryItem_by_story_id">delete from StoryItem where story_id = ? </string>
     <string name="sql_query_copy_story_item">insert into StoryItem (story_id, state, label, seq, note) select ? as story_id, 0 as state, label, seq, \'\' from StoryItemType where story_type_id = ? </string>
