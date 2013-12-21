@@ -22,6 +22,7 @@ public class StoryListActivity extends FragmentActivity {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME
                 | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_CUSTOM);
+        setTitle(getString(R.string.story_list_title));
 //        getActionBar().show();
         ListView listView = (ListView) findViewById(R.id.lv_story_type);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

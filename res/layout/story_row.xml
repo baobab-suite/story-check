@@ -3,123 +3,84 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="fill_parent"
               android:background="@color/bg"
-              android:layout_height="wrap_content">
+              android:layout_height="64dp"
+        android:gravity="center_vertical">
 
 
-    <RelativeLayout
-            android:id="@+id/rl_state"
-            android:indeterminate="false"
+    <za.co.storycheck.view.DrawablePie
+            android:id="@+id/dp_pie"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_margin="8dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+        />
+
+    <RelativeLayout
+            android:layout_toLeftOf="@id/dp_pie"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
+            android:gravity="center"
             >
-        <TextView
-                android:id="@+id/tv_checked"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:gravity="right"
-                android:text="88"
-                android:textSize="14sp"
-                android:paddingRight="8dp"
-                />
-        <TextView
-                android:id="@+id/tv_slash"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:gravity="right"
-                android:text="/"
-                android:textSize="24sp"
-                android:paddingTop="0dp"
-                android:layout_alignRight="@id/tv_checked"
-                />
-        <TextView
-                android:id="@+id/tv_total"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:gravity="right"
-                android:text="99"
-                android:textSize="14sp"
-                android:paddingTop="13dp"
-                android:layout_toRightOf="@id/tv_checked"
-                />
-            </RelativeLayout>
 
     <TextView
             android:id="@+id/tv_label"
-            android:layout_toRightOf="@id/rl_state"
-            android:layout_height="40dp"
-            android:gravity="top"
+            android:layout_toLeftOf="@id/dp_pie"
+            android:layout_height="wrap_content"
             android:text="This is the headline that is very long as you get to see"
             android:textSize="17sp"
+            android:gravity="center_vertical"
             android:maxLines="2"
-            android:lines="2"
-            android:lineSpacingMultiplier="0.8"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="16dp"
             android:layout_width="fill_parent"
             />
 
     <TextView
             android:id="@+id/tv_date"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
             android:layout_below="@id/tv_label"
-            android:layout_toRightOf="@id/rl_state"
+            android:layout_alignParentLeft="true"
             android:text="12.04.2013"
-            android:layout_height="24dp"
-            android:gravity="top"
             android:textSize="13sp"
             android:lines="1"
-            android:layout_marginLeft="2dp"
+            android:textColor="@color/note_text"
             android:layout_marginRight="8dp"
-            android:layout_width="wrap_content"
+            android:layout_marginLeft="16dp"
             />
 
     <TextView
             android:id="@+id/tv_slash"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
             android:layout_below="@id/tv_label"
             android:layout_toRightOf="@id/tv_date"
+            android:layout_alignBaseline="@id/tv_date"
             android:text="/"
-            android:layout_height="24dp"
-            android:gravity="top"
             android:textSize="13sp"
             android:lines="1"
+            android:textColor="@color/note_text"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="8dp"
-            android:layout_width="wrap_content"
             />
 
     <TextView
             android:id="@+id/tv_type"
-            android:layout_below="@id/tv_label"
-            android:layout_toRightOf="@id/tv_slash"
-            android:text="This is the story type"
-            android:layout_height="24dp"
-            android:gravity="top"
-            android:textSize="13sp"
-            android:lines="1"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="8dp"
-            android:layout_width="fill_parent"
-            />
-    <ProgressBar
-            android:id="@+id/pr_state"
-            android:indeterminate="false"
-            style="@android:style/Widget.ProgressBar.Horizontal"
-            android:layout_width="fill_parent"
-            android:layout_below="@id/tv_type"
-            android:layout_height="3dp"
-            android:layout_margin="8dp"
-            />
-    <TextView
-            android:id="@+id/tv_percent"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="100%"
-            android:textSize="16sp"
-            android:paddingLeft="8dp"
-            android:layout_alignBaseline="@id/tv_date"
-            android:layout_alignParentLeft="true"
+            android:layout_below="@id/tv_label"
+            android:layout_toRightOf="@id/tv_slash"
+            android:layout_alignBaseline="@id/tv_slash"
+            android:text="This is the story type"
+            android:textSize="13sp"
+            android:lines="1"
+            android:textColor="@color/note_text"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="8dp"
             />
 
-
+</RelativeLayout>
 </RelativeLayout>

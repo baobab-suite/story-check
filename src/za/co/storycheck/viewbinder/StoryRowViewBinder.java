@@ -3,8 +3,8 @@ package za.co.storycheck.viewbinder;
 import android.database.Cursor;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.TextView;
+import za.co.storycheck.view.DrawablePie;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,10 +19,16 @@ public class StoryRowViewBinder implements SimpleCursorAdapter.ViewBinder {
         if (columnIndex == cursor.getColumnIndex("deleted")) {
             int item_count = cursor.getInt(cursor.getColumnIndex("item_count"));
             int check_count = cursor.getInt(cursor.getColumnIndex("check_count"));
-            ProgressBar progressBar = (ProgressBar) view;
-            progressBar.setMax(item_count);
-            progressBar.setProgress(check_count);
+            DrawablePie pie = (DrawablePie) view;
+            pie.setPieVlaues(new int[]{check_count, item_count-check_count});
             return true;
+//        if (columnIndex == cursor.getColumnIndex("deleted")) {
+//            int item_count = cursor.getInt(cursor.getColumnIndex("item_count"));
+//            int check_count = cursor.getInt(cursor.getColumnIndex("check_count"));
+//            ProgressBar progressBar = (ProgressBar) view;
+//            progressBar.setMax(item_count);
+//            progressBar.setProgress(check_count);
+//            return true;
         } else if (columnIndex == cursor.getColumnIndex("_id")) {
             int item_count = cursor.getInt(cursor.getColumnIndex("item_count"));
             int check_count = cursor.getInt(cursor.getColumnIndex("check_count"));
