@@ -23,7 +23,6 @@ public class EditStoryActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EasyTracker.getInstance(this).activityStart(this);
         setContentView(R.layout.story_edit_activity);
         et_headline = (EditText) findViewById(R.id.et_headline);
         ActionBar actionBar = getActionBar();
@@ -33,6 +32,18 @@ public class EditStoryActivity extends Activity {
         id = extras.getLong("storyId");
         final String headline = extras.getString("headline");
         et_headline.setText(headline);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        EasyTracker.getInstance(this).activityStart(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EasyTracker.getInstance(this).activityStart(this);
     }
 
     private void save() {

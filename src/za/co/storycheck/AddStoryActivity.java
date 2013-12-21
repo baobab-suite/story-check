@@ -33,7 +33,6 @@ public class AddStoryActivity extends FragmentActivity implements LoaderManager.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EasyTracker.getInstance(this).activityStart(this);
         setContentView(R.layout.story_add_activity);
         adapter = new SimpleCursorAdapter(this, R.layout.story_type_spinner_row, null, new String[]{"name"}, new int[]{R.id.tv_label}, 0);
         spinner = (Spinner) findViewById(R.id.sp_story_type);
@@ -43,6 +42,18 @@ public class AddStoryActivity extends FragmentActivity implements LoaderManager.
         setTitle(R.string.add_story);
         getActionBar().setDisplayHomeAsUpEnabled(true);
      }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        EasyTracker.getInstance(this).activityStart(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EasyTracker.getInstance(this).activityStart(this);
+    }
 
     private void add() {
         int position = spinner.getSelectedItemPosition();

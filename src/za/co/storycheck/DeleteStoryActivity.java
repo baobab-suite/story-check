@@ -19,7 +19,6 @@ public class DeleteStoryActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EasyTracker.getInstance(this).activityStart(this);
         setContentView(R.layout.story_delete_activity);
         TextView tv_headline = (TextView) findViewById(R.id.tv_headline);
         Bundle extras = getIntent().getExtras();
@@ -28,6 +27,18 @@ public class DeleteStoryActivity extends Activity {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(getString(R.string.delete_checklist));
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        EasyTracker.getInstance(this).activityStart(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EasyTracker.getInstance(this).activityStart(this);
     }
 
     private void delete() {
