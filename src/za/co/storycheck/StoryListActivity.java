@@ -2,6 +2,8 @@ package za.co.storycheck;
 
 import com.google.analytics.tracking.android.EasyTracker;
 
+import com.rampo.updatechecker.UpdateChecker;
+
 import android.app.ActionBar;
 import android.content.Intent;
 import android.database.Cursor;
@@ -46,6 +48,7 @@ public class StoryListActivity extends FragmentActivity {
     protected void onStart() {
         super.onStart();
         EasyTracker.getInstance(this).activityStart(this);
+        UpdateChecker.checkForNotification(this);
     }
 
     @Override

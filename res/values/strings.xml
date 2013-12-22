@@ -24,4 +24,9 @@
     <string name="report">Report</string>
     <string name="report_story">View Report</string>
     <string name="story_list_title">My Stories</string>
+    <string name="downloadFor">Check out the new update for %1$s!\nAvailable now on Google Play.</string>
+    <string name="dialogPositiveButton">OK</string>
+    <string name="dialogNeutralButton">Later</string>
+    <string name="dialogNegativeButton">No, thanks</string>
+    <string name="newUpdateAvailable">New update found</string>
 </resources>

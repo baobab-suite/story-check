@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              android:background="@color/bg"
-              android:layout_height="64dp"
-        android:gravity="center_vertical">
+                android:layout_width="fill_parent"
+                android:layout_height="64dp"
+                android:background="@color/bg"
+                android:gravity="center_vertical">
 
 
     <za.co.storycheck.view.DrawablePie
@@ -16,7 +16,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-        />
+            />
 
     <RelativeLayout
             android:layout_toLeftOf="@id/dp_pie"
@@ -25,62 +25,62 @@
             android:gravity="center"
             >
 
-    <TextView
-            android:id="@+id/tv_label"
-            android:layout_toLeftOf="@id/dp_pie"
-            android:layout_height="wrap_content"
-            android:text="This is the headline that is very long as you get to see"
-            android:textSize="17sp"
-            android:gravity="center_vertical"
-            android:maxLines="2"
-            android:layout_marginBottom="2dp"
-            android:layout_marginLeft="16dp"
-            android:layout_width="fill_parent"
-            />
+        <TextView
+                android:id="@+id/tv_label"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_toLeftOf="@id/dp_pie"
+                android:text="This is the headline that is very long as you get to see"
+                android:textSize="17sp"
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="16dp"
+                />
 
-    <TextView
-            android:id="@+id/tv_date"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_below="@id/tv_label"
-            android:layout_alignParentLeft="true"
-            android:text="12.04.2013"
-            android:textSize="13sp"
-            android:lines="1"
-            android:textColor="@color/note_text"
-            android:layout_marginRight="8dp"
-            android:layout_marginLeft="16dp"
-            />
+        <TextView
+                android:id="@+id/tv_date"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_below="@id/tv_label"
+                android:layout_alignParentLeft="true"
+                android:text="12.04.2013"
+                android:textSize="13sp"
+                android:lines="1"
+                android:textColor="@color/note_text"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="16dp"
+                />
 
-    <TextView
-            android:id="@+id/tv_slash"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_below="@id/tv_label"
-            android:layout_toRightOf="@id/tv_date"
-            android:layout_alignBaseline="@id/tv_date"
-            android:text="/"
-            android:textSize="13sp"
-            android:lines="1"
-            android:textColor="@color/note_text"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="8dp"
-            />
+        <TextView
+                android:id="@+id/tv_slash"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_below="@id/tv_label"
+                android:layout_toRightOf="@id/tv_date"
+                android:layout_alignBaseline="@id/tv_date"
+                android:text="/"
+                android:textSize="13sp"
+                android:lines="1"
+                android:textColor="@color/note_text"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="8dp"
+                />
 
-    <TextView
-            android:id="@+id/tv_type"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_below="@id/tv_label"
-            android:layout_toRightOf="@id/tv_slash"
-            android:layout_alignBaseline="@id/tv_slash"
-            android:text="This is the story type"
-            android:textSize="13sp"
-            android:lines="1"
-            android:textColor="@color/note_text"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="8dp"
-            />
+        <TextView
+                android:id="@+id/tv_type"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_below="@id/tv_label"
+                android:layout_toRightOf="@id/tv_slash"
+                android:layout_alignBaseline="@id/tv_slash"
+                android:text="This is the story type"
+                android:textSize="13sp"
+                android:lines="1"
+                android:textColor="@color/note_text"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="8dp"
+                />
 
-</RelativeLayout>
+    </RelativeLayout>
 </RelativeLayout>
