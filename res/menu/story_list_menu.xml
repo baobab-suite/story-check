@@ -7,7 +7,7 @@
     </item>
     <item android:id="@+id/mi_feedback"
           android:title="@string/feedback"
-            android:icon="@drawable/ic_action_email" android:showAsAction="ifRoom">
+            android:icon="@drawable/ic_action_email" android:showAsAction="collapseActionView">
     </item>
     <item android:id="@+id/mi_about"
           android:title="@string/about"
