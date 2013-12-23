@@ -51,7 +51,7 @@ public class StoryReportFragment extends Fragment implements LoaderManager.Loade
     }
 
     public void onLoadFinished(Loader<ReportDto> spannedLoader, ReportDto dto) {
-        reportView.loadData(dto.getHtml(), "text/plain", null);
+        reportView.loadData(dto.getHtml(), "text/html", null);
         Bundle extras = getActivity().getIntent().getExtras();
         String headline = extras.getString("headline");
         Intent shareIntent = new Intent();
@@ -59,7 +59,7 @@ public class StoryReportFragment extends Fragment implements LoaderManager.Loade
         shareIntent.putExtra(Intent.EXTRA_TITLE, "StoryCheck report for: " + headline);
         shareIntent.putExtra(Intent.EXTRA_SUBJECT, "StoryCheck report for: "+headline);
         shareIntent.putExtra(Intent.EXTRA_TEXT, dto.getString());
-        shareIntent.setType("text/html");
+        shareIntent.setType("text/plain");
         if (shareActionProvider != null){
             shareActionProvider.setShareIntent(shareIntent);
         }else{
