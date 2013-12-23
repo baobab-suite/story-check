@@ -51,7 +51,7 @@ public class StoryReportFragment extends Fragment implements LoaderManager.Loade
     }
 
     public void onLoadFinished(Loader<ReportDto> spannedLoader, ReportDto dto) {
-        reportView.loadData(dto.getHtml(), "text/html", null);
+        reportView.loadData(dto.getHtml(), "text/plain", null);
         Bundle extras = getActivity().getIntent().getExtras();
         String headline = extras.getString("headline");
         Intent shareIntent = new Intent();

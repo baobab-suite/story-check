@@ -30,4 +30,8 @@
     <string name="dialogNegativeButton">No, thanks</string>
     <string name="newUpdateAvailable">New update found</string>
     <string name="about">About</string>
+    <string name="feedback">Provide feedback</string>
+    <string name="feedback_message">Please mail us with any feedback or feature requests you may have. We are keen to
+        here from you.
+    </string>
 </resources>

@@ -7,6 +7,7 @@ import com.rampo.updatechecker.UpdateChecker;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
@@ -82,6 +83,17 @@ public class StoryListActivity extends FragmentActivity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
+                return true;
+            }
+            case R.id.mi_feedback:
+            {
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                intent.setType("text/plain");
+                intent.setData(Uri.parse("mailto:storycheck@googlegroups.com"));
+                intent.putExtra(Intent.EXTRA_EMAIL, "storycheck@googlegroups.com");
+                intent.putExtra(Intent.EXTRA_SUBJECT, "App feedback");
+                intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.feedback_message));
+                startActivity(Intent.createChooser(intent, "Send Email"));
                 return true;
             }
         }

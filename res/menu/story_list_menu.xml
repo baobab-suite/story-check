@@ -3,7 +3,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/mi_add"
           android:title="@string/add_story"
-            android:icon="@drawable/add" android:showAsAction="ifRoom">
+            android:icon="@drawable/add" android:showAsAction="always">
+    </item>
+    <item android:id="@+id/mi_feedback"
+          android:title="@string/feedback"
+            android:icon="@drawable/ic_action_email" android:showAsAction="ifRoom">
     </item>
     <item android:id="@+id/mi_about"
           android:title="@string/about"
