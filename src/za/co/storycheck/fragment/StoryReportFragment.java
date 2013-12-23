@@ -39,7 +39,7 @@ public class StoryReportFragment extends Fragment implements LoaderManager.Loade
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        reportView = (WebView) view.findViewById(R.id.tv_story_report);
+        reportView = (WebView) view.findViewById(R.id.wv_story_report);
         getActivity().getSupportLoaderManager().initLoader(0, savedInstanceState, this);
     }
 

@@ -107,7 +107,7 @@ public class StoryActivity extends FragmentActivity implements LoaderManager.Loa
                 getActionBar().setTitle(headline);
             }
         } finally {
-            cursor.close();
+//            cursor.close();
         }
     }
 

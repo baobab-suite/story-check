@@ -5,7 +5,7 @@
               android:layout_height="fill_parent"
         >
     <WebView
-            android:id="@+id/wv_story_report"
+            android:id="@+id/wv_about"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:background="@color/bg"

@@ -22,5 +22,6 @@
         <activity android:name=".DeleteStoryActivity"/>
         <activity android:name=".StoryActivity"/>
         <activity android:name=".StoryReportActivity"/>
+        <activity android:name=".AboutActivity"/>
     </application>
 </manifest>

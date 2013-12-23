@@ -24,13 +24,7 @@ import za.co.storycheck.viewbinder.StoryRowViewBinder;
 public class StoryListFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private SimpleCursorAdapter adapter;
-    private ListView listView;
     private String[] select = new String[]{"headline", "type", "create_date_str", "deleted"};
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -40,7 +34,7 @@ public class StoryListFragment extends Fragment implements LoaderManager.LoaderC
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        listView = (ListView) view.findViewById(R.id.lv_story_type);
+        ListView listView = (ListView) view.findViewById(R.id.lv_story_type);
         adapter = new SimpleCursorAdapter(getActivity(), R.layout.story_row, null, select, new int[] {R.id.tv_label, R.id.tv_type, R.id.tv_date, R.id.dp_pie}, 0);
         adapter.setViewBinder(new StoryRowViewBinder());
         listView.setAdapter(adapter);

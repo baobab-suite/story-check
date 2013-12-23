@@ -29,4 +29,5 @@
     <string name="dialogNeutralButton">Later</string>
     <string name="dialogNegativeButton">No, thanks</string>
     <string name="newUpdateAvailable">New update found</string>
+    <string name="about">About</string>
 </resources>

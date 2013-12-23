@@ -4,11 +4,10 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
         >
-    <WebView
-            android:id="@+id/wv_story_report"
+    <fragment
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="@color/bg"
+            class="za.co.storycheck.fragment.AboutFragment"
             />
 </LinearLayout>
 
