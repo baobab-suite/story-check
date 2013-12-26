@@ -13,8 +13,8 @@
                  android:theme="@style/Theme.Storycheck">
         <activity android:name=".StoryListActivity">
             <intent-filter>
-                <action android:name="za.co.storycheck.StoryListActivity"/>
-                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity android:name=".AddStoryActivity"/>
@@ -23,12 +23,5 @@
         <activity android:name=".StoryActivity"/>
         <activity android:name=".StoryReportActivity"/>
         <activity android:name=".AboutActivity"/>
-        <activity android:name=".Splash"
-            android:label="@string/app_name" android:excludeFromRecents="true" android:finishOnTaskLaunch="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
     </application>
 </manifest>

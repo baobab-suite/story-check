@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="bg">#fff7eb</color>
+    <color name="bg_selected">#ffbdb8ae</color>
+    <color name="bg_light">#e1dacf</color>
     <color name="note_text">#646464</color>
     <color name="note_no_text">#A5A5A5</color>
 </resources>

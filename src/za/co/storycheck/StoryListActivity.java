@@ -15,11 +15,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import za.co.storycheck.fragment.StoryDetailFragment;
 import za.co.storycheck.fragment.StoryFragment;
 
 public class StoryListActivity extends FragmentActivity {
 
-    StoryFragment storyFragment;
+    StoryDetailFragment storyFragment;
 
     /**
      * Called when the activity is first created.
@@ -34,9 +35,10 @@ public class StoryListActivity extends FragmentActivity {
                 | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_CUSTOM);
         setTitle(getString(R.string.story_list_title));
 //        getActionBar().show();
-        ListView listView = (ListView) findViewById(R.id.lv_story_type);
+        final ListView listView = (ListView) findViewById(R.id.lv_story_type);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                listView.state
                 Cursor cursor = (Cursor) parent.getAdapter().getItem(position);
                 long storyId = cursor.getLong(cursor.getColumnIndex("_id"));
                 String headline = cursor.getString(cursor.getColumnIndex("headline"));
@@ -94,7 +96,7 @@ public class StoryListActivity extends FragmentActivity {
                 return true;
             }
         }
-        return false;
+        return super.onMenuItemSelected(featureId, item);
     }
 
     protected void addStory() {
@@ -113,8 +115,8 @@ public class StoryListActivity extends FragmentActivity {
             intent.putExtra("headline", headline);
             startActivity(intent);
         }else{
-            storyFragment.onLoaderReset(null);
-            storyFragment.loadStory(storyId);
+            storyFragment.clearSelection();
+            storyFragment.setStory(storyId, headline);
             TextView tv_headline = (TextView) findViewById(R.id.tv_headline);
             tv_headline.setText(headline);
         }

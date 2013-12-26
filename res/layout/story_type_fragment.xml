@@ -8,7 +8,9 @@
             android:id="@+id/lv_story_type"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:cacheColorHint="@android:color/transparent"
             android:background="@color/bg"
+            android:listSelector="@drawable/story_list_background"
             />
 </LinearLayout>
 

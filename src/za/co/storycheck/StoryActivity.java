@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
-import android.view.Menu;
 import android.view.MenuItem;
 import za.co.storycheck.fragment.StoryFragment;
 import za.co.storycheck.loaders.RawQueryLoader;
@@ -31,7 +30,7 @@ public class StoryActivity extends FragmentActivity implements LoaderManager.Loa
         getSupportLoaderManager().initLoader(R.id.story_activity, savedInstanceState, this);
         StoryFragment storyFragment = (StoryFragment)getSupportFragmentManager().findFragmentById(R.id.frag_story_detail);
         long storyId = getIntent().getExtras().getLong("storyId");
-        storyFragment.loadStory(storyId);
+        storyFragment.setStory(storyId, headline);
     }
 
     @Override
@@ -47,26 +46,14 @@ public class StoryActivity extends FragmentActivity implements LoaderManager.Loa
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.story_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         // Respond to the action bar's Up/Home button
         case android.R.id.home:
             finish();
             return true;
-        case R.id.mi_edit:
-            editStory();
-            return true;
         case R.id.mi_delete:
             deleteStory();
-            return true;
-        case R.id.mi_report:
-            reportStory();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -74,21 +61,21 @@ public class StoryActivity extends FragmentActivity implements LoaderManager.Loa
 
     private void reportStory() {
         Intent intent = new Intent(this, StoryReportActivity.class);
-        sartStoryActivity(intent);
+        startStoryActivity(intent);
     }
 
     private void deleteStory() {
         Intent intent = new Intent(this, DeleteStoryActivity.class);
-        sartStoryActivity(intent);
+        startStoryActivity(intent);
         finish();
     }
 
     private void editStory() {
         Intent intent = new Intent(this, EditStoryActivity.class);
-        sartStoryActivity(intent);
+        startStoryActivity(intent);
     }
 
-    private void sartStoryActivity(Intent intent) {
+    private void startStoryActivity(Intent intent) {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
