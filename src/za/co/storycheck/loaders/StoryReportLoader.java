@@ -50,11 +50,6 @@ public class StoryReportLoader extends AsyncTaskLoader<ReportDto> {
         htmlSB.append("</strong></br></br>Items not completed:<ul>");
         int state = 0;
         while (c.moveToNext()){
-            stringSB.append("\n   - ");
-            stringSB.append(c.getString(c.getColumnIndex("label")));
-            htmlSB.append("<li>");
-            htmlSB.append(c.getString(c.getColumnIndex("label")));
-            htmlSB.append("</li>");
             int newState = c.getInt(c.getColumnIndex("state"));
             if(state != newState && newState == 1){
                 stringSB.append("\n\nItems completed:");
@@ -64,6 +59,11 @@ public class StoryReportLoader extends AsyncTaskLoader<ReportDto> {
                 stringSB.append("\n\nItems marked and not applicable:");
                 htmlSB.append("</ul></br>Items marked and not applicable:<ul>");
             }
+            stringSB.append("\n   - ");
+            stringSB.append(c.getString(c.getColumnIndex("label")));
+            htmlSB.append("<li>");
+            htmlSB.append(c.getString(c.getColumnIndex("label")));
+            htmlSB.append("</li>");
             state = newState;
         }
         htmlSB.append("</ul></html>");
