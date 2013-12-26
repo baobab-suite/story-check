@@ -54,6 +54,7 @@ public class StoryItemRowViewBinder implements SimpleCursorAdapter.ViewBinder {
                             LocalBroadcastManager.getInstance(context).sendBroadcast(updateStoryStateIntent);
 //                            new StoryStateUpdater().onReceive(context, updateStoryStateIntent);
                             Intent reloadIntent = new Intent("reload_story");
+                            reloadIntent.putExtra("storyId", storyId);
                             LocalBroadcastManager.getInstance(context).sendBroadcast(reloadIntent);
                             return null;
                         }

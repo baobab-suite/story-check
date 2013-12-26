@@ -11,6 +11,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.view.Menu;
 import android.view.MenuItem;
+import za.co.storycheck.fragment.StoryFragment;
 import za.co.storycheck.loaders.RawQueryLoader;
 
 public class StoryActivity extends FragmentActivity implements LoaderManager.LoaderCallbacks<Cursor>{
@@ -28,6 +29,9 @@ public class StoryActivity extends FragmentActivity implements LoaderManager.Loa
         actionBar.setTitle(headline);
         actionBar.setDisplayHomeAsUpEnabled(true);
         getSupportLoaderManager().initLoader(R.id.story_activity, savedInstanceState, this);
+        StoryFragment storyFragment = (StoryFragment)getSupportFragmentManager().findFragmentById(R.id.frag_story_detail);
+        long storyId = getIntent().getExtras().getLong("storyId");
+        storyFragment.loadStory(storyId);
     }
 
     @Override

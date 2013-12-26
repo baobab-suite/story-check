@@ -5,6 +5,7 @@
               android:layout_height="fill_parent"
         >
     <fragment
+            android:id="@+id/frag_story_detail"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             class="za.co.storycheck.fragment.StoryFragment"

@@ -32,9 +32,16 @@ public class StoryFragment extends Fragment implements LoaderManager.LoaderCallb
     private BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            getLoaderManager().restartLoader(R.id.story_fragment, null, StoryFragment.this);
+            long storyId = intent.getExtras().getLong("storyId");
+            loadStory(storyId);
         }
     };
+
+    public void loadStory(long storyId) {
+        Bundle bundle = new Bundle();
+        bundle.putLong("storyId", storyId);
+        getLoaderManager().restartLoader(R.id.story_fragment, bundle, this);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,12 +67,15 @@ public class StoryFragment extends Fragment implements LoaderManager.LoaderCallb
         adapter.setViewBinder(new StoryItemRowViewBinder());
         ListView listView = (ListView) view.findViewById(R.id.lv_items);
         listView.setAdapter(adapter);
-        getLoaderManager().initLoader(R.id.story_fragment, savedInstanceState, this);
+        getLoaderManager().initLoader(R.id.story_fragment, getArguments(), this);
     }
 
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        Bundle extras = getActivity().getIntent().getExtras();
-        long storyId = extras.getLong("storyId");
+        long storyId;
+        if (bundle == null){
+            return new Loader<Cursor>(getActivity());
+        }
+        storyId = bundle.getLong("storyId");
         return new RawQueryLoader(getActivity(), R.string.sql_query_StoryItem_by_story_id, new String[]{String.valueOf(storyId)});
     }
 

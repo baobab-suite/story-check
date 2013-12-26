@@ -1,7 +1,6 @@
 package za.co.storycheck;
 
 import com.google.analytics.tracking.android.EasyTracker;
-
 import com.rampo.updatechecker.UpdateChecker;
 
 import android.app.ActionBar;
@@ -15,8 +14,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
+import za.co.storycheck.fragment.StoryFragment;
 
 public class StoryListActivity extends FragmentActivity {
+
+    StoryFragment storyFragment;
+
     /**
      * Called when the activity is first created.
      */
@@ -24,6 +28,7 @@ public class StoryListActivity extends FragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.story_list);
+        storyFragment = (StoryFragment)getSupportFragmentManager().findFragmentById(R.id.frag_story_detail);
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME
                 | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -33,13 +38,9 @@ public class StoryListActivity extends FragmentActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Cursor cursor = (Cursor) parent.getAdapter().getItem(position);
-                Intent intent = new Intent(StoryListActivity.this, StoryActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 long storyId = cursor.getLong(cursor.getColumnIndex("_id"));
-                intent.putExtra("storyId", storyId);
                 String headline = cursor.getString(cursor.getColumnIndex("headline"));
-                intent.putExtra("headline", headline);
-                startActivity(intent);
+                storySelected(storyId, headline);
             }
         });
 
@@ -69,11 +70,7 @@ public class StoryListActivity extends FragmentActivity {
         switch (item.getItemId()){
             case R.id.mi_add:
             {
-                Intent intent = new Intent(this, AddStoryActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                startActivity(intent);
+                addStory();
                 return true;
             }
             case R.id.mi_about:
@@ -98,5 +95,28 @@ public class StoryListActivity extends FragmentActivity {
             }
         }
         return false;
+    }
+
+    protected void addStory() {
+        Intent intent = new Intent(this, AddStoryActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        startActivity(intent);
+    }
+
+    protected void storySelected(long storyId, String headline) {
+        if(storyFragment == null){
+            Intent intent = new Intent(this, StoryActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("storyId", storyId);
+            intent.putExtra("headline", headline);
+            startActivity(intent);
+        }else{
+            storyFragment.onLoaderReset(null);
+            storyFragment.loadStory(storyId);
+            TextView tv_headline = (TextView) findViewById(R.id.tv_headline);
+            tv_headline.setText(headline);
+        }
     }
 }

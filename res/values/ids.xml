@@ -2,4 +2,5 @@
 <resources>
     <item name="story_fragment" type="id">1</item>
     <item name="story_activity" type="id">2</item>
+    <item name="story_list_loader" type="id">3</item>
 </resources>
