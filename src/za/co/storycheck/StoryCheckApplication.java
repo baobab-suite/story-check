@@ -1,10 +1,7 @@
 package za.co.storycheck;
 
 import android.app.Application;
-import android.content.IntentFilter;
-import android.support.v4.content.LocalBroadcastManager;
 import za.co.storycheck.data.DbHelper;
-import za.co.storycheck.receiver.StoryStateUpdater;
 
 /**
  * User: dirk
@@ -16,7 +13,7 @@ public class StoryCheckApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-        LocalBroadcastManager.getInstance(this).registerReceiver(new StoryStateUpdater(), new IntentFilter("update_story_state"));
+//        LocalBroadcastManager.getInstance(this).registerReceiver(new StoryStateUpdater(), new IntentFilter("update_story_state"));
 //        GoogleAnalytics.getInstance(this).setDryRun(true);
     }
 

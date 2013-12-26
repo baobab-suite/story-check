@@ -2,9 +2,6 @@ package za.co.storycheck;
 
 import com.google.analytics.tracking.android.EasyTracker;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -64,10 +61,6 @@ public class AddStoryActivity extends FragmentActivity implements LoaderManager.
         String headline = et_headline.getText().toString();
         values.put("headline", headline);
         values.put("type", type);
-        long today = System.currentTimeMillis();
-        values.put("create_date", today);
-        values.put("last_edit_date", today);
-        values.put("create_date_str", new SimpleDateFormat("dd.MM.yyyy").format(new Date(today)));
         values.put("deleted", false);
         DbHelper dbHelper = DbHelper.getHelper(this);
         SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();

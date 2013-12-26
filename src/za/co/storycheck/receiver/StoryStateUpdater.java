@@ -19,6 +19,10 @@ import za.co.storycheck.data.DbHelper;
 public class StoryStateUpdater extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
+        updateStoryState(context, intent);
+    }
+
+    private void updateStoryState(Context context, Intent intent) {
         long storyId = intent.getExtras().getLong("storyId");
         DbHelper dbHelper = DbHelper.getHelper(context);
         SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();
