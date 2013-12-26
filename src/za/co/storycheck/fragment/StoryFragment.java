@@ -41,7 +41,6 @@ public class StoryFragment extends Fragment implements StoryDetailFragment, Load
         @Override
         public void onReceive(Context context, Intent intent) {
             long storyId = intent.getExtras().getLong("storyId");
-            String headline = intent.getExtras().getString("headline");
             setStory(storyId, headline);
         }
     };
