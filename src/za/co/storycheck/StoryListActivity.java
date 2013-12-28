@@ -1,6 +1,9 @@
 package za.co.storycheck;
 
 import com.google.analytics.tracking.android.EasyTracker;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import com.rampo.updatechecker.UpdateChecker;
 
 import android.app.ActionBar;
@@ -8,9 +11,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -18,7 +18,7 @@ import android.widget.TextView;
 import za.co.storycheck.fragment.StoryDetailFragment;
 import za.co.storycheck.fragment.StoryFragment;
 
-public class StoryListActivity extends FragmentActivity {
+public class StoryListActivity extends SherlockFragmentActivity {
 
     StoryDetailFragment storyFragment;
 
@@ -30,7 +30,7 @@ public class StoryListActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.story_list);
         storyFragment = (StoryFragment)getSupportFragmentManager().findFragmentById(R.id.frag_story_detail);
-        ActionBar actionBar = getActionBar();
+        com.actionbarsherlock.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME
                 | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_CUSTOM);
         setTitle(getString(R.string.story_list_title));
@@ -63,7 +63,7 @@ public class StoryListActivity extends FragmentActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.story_list_menu, menu);
+        getSupportMenuInflater().inflate(R.menu.story_list_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

@@ -1,19 +1,19 @@
 package za.co.storycheck;
 
 import com.google.analytics.tracking.android.EasyTracker;
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.MenuItem;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
-import android.view.MenuItem;
 import za.co.storycheck.fragment.StoryFragment;
 import za.co.storycheck.loaders.RawQueryLoader;
 
-public class StoryActivity extends FragmentActivity implements LoaderManager.LoaderCallbacks<Cursor>{
+public class StoryActivity extends SherlockFragmentActivity implements LoaderManager.LoaderCallbacks<Cursor>{
     private String headline;
 
     /**
@@ -24,7 +24,7 @@ public class StoryActivity extends FragmentActivity implements LoaderManager.Loa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.story_activity);
         headline = getIntent().getExtras().getString("headline");
-        ActionBar actionBar = getActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(headline);
         actionBar.setDisplayHomeAsUpEnabled(true);
         getSupportLoaderManager().initLoader(R.id.story_activity, savedInstanceState, this);
@@ -95,7 +95,7 @@ public class StoryActivity extends FragmentActivity implements LoaderManager.Loa
         try {
             if (cursor.moveToFirst()) {
                 headline = cursor.getString(cursor.getColumnIndex("headline"));
-                getActionBar().setTitle(headline);
+                getSupportActionBar().setTitle(headline);
             }
         } finally {
 //            cursor.close();

@@ -1,20 +1,21 @@
 package za.co.storycheck.fragment;
 
+import com.actionbarsherlock.app.SherlockFragment;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -32,10 +33,10 @@ import za.co.storycheck.viewbinder.StoryItemRowViewBinder;
  * Time: 2:49 PM
  * To change this template use File | Settings | File Templates.
  */
-public class StoryFragment extends Fragment implements StoryDetailFragment, LoaderManager.LoaderCallbacks<Cursor> {
+public class StoryFragment extends SherlockFragment implements StoryDetailFragment, LoaderManager.LoaderCallbacks<Cursor> {
 
     private SimpleCursorAdapter adapter;
-    private long storyId;
+    private long storyId = -1;
     private String headline;
     private BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
@@ -55,7 +56,7 @@ public class StoryFragment extends Fragment implements StoryDetailFragment, Load
     }
 
     public void clearSelection() {
-        if(adapter != null){
+        if (adapter != null) {
             adapter.swapCursor(null);
         }
     }
@@ -81,7 +82,9 @@ public class StoryFragment extends Fragment implements StoryDetailFragment, Load
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        adapter = new SimpleCursorAdapter(getActivity(), R.layout.item_row, null, new String[]{"label", "note", "state"}, new int[] {R.id.tv_label, R.id.tv_note, R.id.cb_state}, 0);
+        String[] cols = {"label", "note", "state"};
+        int[] views = {R.id.tv_label, R.id.tv_note, R.id.cb_state};
+        adapter = new SimpleCursorAdapter(getActivity(), R.layout.item_row, null, cols, views, 0);
         adapter.setViewBinder(new StoryItemRowViewBinder());
         ListView listView = (ListView) view.findViewById(R.id.lv_items);
         listView.setAdapter(adapter);
@@ -90,7 +93,7 @@ public class StoryFragment extends Fragment implements StoryDetailFragment, Load
 
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         long storyId;
-        if (bundle == null){
+        if (bundle == null) {
             return new Loader<Cursor>(getActivity());
         }
         storyId = bundle.getLong("storyId");
@@ -113,16 +116,18 @@ public class StoryFragment extends Fragment implements StoryDetailFragment, Load
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-        case R.id.mi_edit:
-            editStory();
-            return true;
-        case R.id.mi_delete:
-            deleteStory();
-            return true;
-        case R.id.mi_report:
-            reportStory();
-            return true;
+        if (storyId >= 0) {
+            switch (item.getItemId()) {
+                case R.id.mi_edit:
+                    editStory();
+                    return true;
+                case R.id.mi_delete:
+                    deleteStory();
+                    return true;
+                case R.id.mi_report:
+                    reportStory();
+                    return true;
+            }
         }
         return super.onOptionsItemSelected(item);
     }
@@ -146,7 +151,6 @@ public class StoryFragment extends Fragment implements StoryDetailFragment, Load
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        Bundle extras = getActivity().getIntent().getExtras();
         intent.putExtra("storyId", storyId);
         intent.putExtra("headline", headline);
         startActivity(intent);

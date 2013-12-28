@@ -1,17 +1,19 @@
 package za.co.storycheck;
 
 import com.google.analytics.tracking.android.EasyTracker;
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 
-import android.app.ActionBar;
-import android.app.Activity;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v4.content.LocalBroadcastManager;
 import android.widget.TextView;
 import za.co.storycheck.data.DbHelper;
 
-public class DeleteStoryActivity extends Activity {
+public class DeleteStoryActivity extends SherlockFragmentActivity {
 
     /**
      * Called when the activity is first created.
@@ -24,7 +26,7 @@ public class DeleteStoryActivity extends Activity {
         Bundle extras = getIntent().getExtras();
         final String headline = extras.getString("headline");
         tv_headline.setText(headline);
-        ActionBar actionBar = getActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(getString(R.string.delete_checklist));
     }
@@ -57,12 +59,15 @@ public class DeleteStoryActivity extends Activity {
 //            writableDatabase.close();
         }
         finish();
+        Intent reloadIntent = new Intent("reload_story");
+        reloadIntent.putExtra("storyId", -1l);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(reloadIntent);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.ok_cancel_menu, menu);
+        getSupportMenuInflater().inflate(R.menu.ok_cancel_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

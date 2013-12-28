@@ -1,13 +1,13 @@
 package za.co.storycheck;
 
 import com.google.analytics.tracking.android.EasyTracker;
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.MenuItem;
 
-import android.app.ActionBar;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.view.MenuItem;
 
-public class StoryReportActivity extends FragmentActivity {
+public class StoryReportActivity extends SherlockFragmentActivity {
 
     /**
      * Called when the activity is first created.
@@ -16,7 +16,7 @@ public class StoryReportActivity extends FragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.story_report);
-        ActionBar actionBar = getActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(getString(R.string.report));
     }

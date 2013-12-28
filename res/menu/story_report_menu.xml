@@ -6,6 +6,6 @@
           android:titleCondensed="@string/share"
           android:icon="@drawable/share"
           android:showAsAction="ifRoom"
-          android:actionProviderClass="android.widget.ShareActionProvider" >
+          android:actionProviderClass="com.actionbarsherlock.widget.ShareActionProvider" >
     </item>
 </menu>

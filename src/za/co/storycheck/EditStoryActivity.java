@@ -1,18 +1,18 @@
 package za.co.storycheck;
 
 import com.google.analytics.tracking.android.EasyTracker;
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.EditText;
 import za.co.storycheck.data.DbHelper;
 
-public class EditStoryActivity extends Activity {
+public class EditStoryActivity extends SherlockFragmentActivity {
 
     private EditText et_headline;
     private long id;
@@ -25,7 +25,7 @@ public class EditStoryActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.story_edit_activity);
         et_headline = (EditText) findViewById(R.id.et_headline);
-        ActionBar actionBar = getActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(getString(R.string.edit_story));
         Bundle extras = getIntent().getExtras();
@@ -65,7 +65,7 @@ public class EditStoryActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.ok_cancel_menu, menu);
+        getSupportMenuInflater().inflate(R.menu.ok_cancel_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

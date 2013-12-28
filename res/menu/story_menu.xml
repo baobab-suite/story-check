@@ -14,8 +14,8 @@
           android:showAsAction="ifRoom">
     </item>
     <item android:id="@+id/mi_edit"
-          android:title="@string/delete_story"
-          android:titleCondensed="@string/delete"
+          android:title="@string/edit_story"
+          android:titleCondensed="@string/edit"
           android:icon="@drawable/ic_action_edit"
           android:showAsAction="ifRoom">
     </item>

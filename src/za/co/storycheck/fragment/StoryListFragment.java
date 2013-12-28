@@ -1,12 +1,13 @@
 package za.co.storycheck.fragment;
 
+import com.actionbarsherlock.app.SherlockFragment;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v4.content.LocalBroadcastManager;
@@ -26,7 +27,7 @@ import za.co.storycheck.viewbinder.StoryRowViewBinder;
  * Time: 2:49 PM
  * To change this template use File | Settings | File Templates.
  */
-public class StoryListFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
+public class StoryListFragment extends SherlockFragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private SimpleCursorAdapter adapter;
     private BroadcastReceiver receiver = new BroadcastReceiver() {

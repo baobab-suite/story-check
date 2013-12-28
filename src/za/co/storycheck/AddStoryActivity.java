@@ -1,25 +1,25 @@
 package za.co.storycheck;
 
 import com.google.analytics.tracking.android.EasyTracker;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v4.content.LocalBroadcastManager;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import za.co.storycheck.data.DbHelper;
 import za.co.storycheck.loaders.RawQueryLoader;
 
-public class AddStoryActivity extends FragmentActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class AddStoryActivity extends SherlockFragmentActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     private SimpleCursorAdapter adapter;
     private Spinner spinner;
     private EditText et_headline;
@@ -31,13 +31,13 @@ public class AddStoryActivity extends FragmentActivity implements LoaderManager.
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.story_add_activity);
-        adapter = new SimpleCursorAdapter(this, R.layout.story_type_spinner_row, null, new String[]{"name"}, new int[]{R.id.tv_label}, 0);
+        adapter = new SimpleCursorAdapter(this, R.layout.story_type_spinner_row, null, new String[]{"name"}, new int[]{R.id.tv_label});
         spinner = (Spinner) findViewById(R.id.sp_story_type);
         spinner.setAdapter(adapter);
         getSupportLoaderManager().initLoader(0, savedInstanceState, this);
         et_headline = (EditText) findViewById(R.id.et_headline);
         setTitle(R.string.add_story);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
      }
 
     @Override
@@ -88,7 +88,7 @@ public class AddStoryActivity extends FragmentActivity implements LoaderManager.
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.ok_cancel_menu, menu);
+        getSupportMenuInflater().inflate(R.menu.ok_cancel_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -112,10 +112,10 @@ public class AddStoryActivity extends FragmentActivity implements LoaderManager.
     }
 
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-        adapter.swapCursor(cursor);
+        adapter.changeCursor(cursor);
     }
 
     public void onLoaderReset(Loader<Cursor> cursorLoader) {
-        adapter.swapCursor(null);
+        adapter.changeCursor(null);
     }
 }

@@ -1,18 +1,19 @@
 package za.co.storycheck.fragment;
 
+import com.actionbarsherlock.app.SherlockFragment;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.widget.ShareActionProvider;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
-import android.widget.ShareActionProvider;
 import za.co.storycheck.R;
 import za.co.storycheck.dto.ReportDto;
 import za.co.storycheck.loaders.StoryReportLoader;
@@ -24,7 +25,7 @@ import za.co.storycheck.loaders.StoryReportLoader;
  * Time: 2:49 PM
  * To change this template use File | Settings | File Templates.
  */
-public class StoryReportFragment extends Fragment implements LoaderManager.LoaderCallbacks<ReportDto> {
+public class StoryReportFragment extends SherlockFragment implements LoaderManager.LoaderCallbacks<ReportDto> {
 
 
     private WebView reportView;
